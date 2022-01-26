@@ -1,1 +1,14 @@
 <p>login works!</p>
+<div>
+    <h1>Login</h1>
+  
+    <label for="username">Username:</label>
+    <input id="username" type="text" [(ngModel)]="this.username" (keydown.enter)="onClickLogin()">
+  
+    <label for="password">Password:</label>
+    <input id="password" type="password" [(ngModel)]="this.password" (keydown.enter)="onClickLogin()">
+  
+    <button id="btnLogin" (click)="onClickLogin()">Login</button>
+  
+  
+  </div>

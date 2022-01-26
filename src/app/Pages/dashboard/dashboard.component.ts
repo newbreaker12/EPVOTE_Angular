@@ -12,7 +12,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class DashboardComponent implements OnInit {
 
   articles = []
-  displayedColumns = ["name"]
+  displayedColumns = ["name","group.name","description","createdAt","status","edit"]
   dataSource = new MatTableDataSource<any>();
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -23,6 +23,29 @@ export class DashboardComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.client.getArticles().subscribe(response => this.dataSource.data = response.data);
+  }
+
+  public getStatus(session){
+    if(session === null){
+      return "Never voted";
+    } else {
+      const from = new Date(session.from)
+      const to = new Date(session.to)
+      const now = new Date(new Date())
+      if (from > now) {
+        return "Not yet started";
+      }else if (from < now && to > now)
+      {
+        return "Voting";
+      }else if(now > to )
+      {
+        return "Voted";
+      }
+    } 
+  }
+
+  public edit(id: string) {
+    window.open("/edit/" + id, "_self");
   }
 
 }
