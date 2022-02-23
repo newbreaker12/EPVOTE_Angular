@@ -12,7 +12,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class DashboardComponent implements OnInit {
 
   articles = []
-  displayedColumns = ["name","group.name","description","createdAt","status","edit"]
+  displayedColumns = ["name","group.name","description","createdAt","status","edit","session"]
   dataSource = new MatTableDataSource<any>();
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -45,7 +45,10 @@ export class DashboardComponent implements OnInit {
   }
 
   public edit(id: string) {
-    window.open("/edit/" + id, "_self");
+    window.open("/article/edit/" + id, "_self");
+  }
+  public createSession(id: string) {
+    window.open("/session/create/" + id, "_self");
   }
 
 }

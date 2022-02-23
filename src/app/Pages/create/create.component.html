@@ -1,0 +1,21 @@
+<h1> New voting period creation: </h1>
+
+<h3>Political group:</h3>
+<div class="dropdown" [ngClass]="{'disabled' : this.id}">
+    <button class="dropbtn">{{this.groupName}}</button>
+    <div class="dropdown-content">
+        <a *ngFor="let item of groups" (click)="this.groupID = item.id; this.groupName = item.name">{{item.name}}</a>
+    </div>
+</div>
+
+
+<h3> Name:</h3>
+<input type="text" name="name" [(ngModel)]="name" *ngIf="!this.id">
+<span *ngIf="this.id">{{name}}</span>
+<br />
+<h3>Description:</h3>
+<input type="text" name="description"  [(ngModel)]="description">
+
+<a *ngIf="!this.id" (click)="this.createArticle()">Create</a>
+<a *ngIf="this.id" (click)="this.editArticle()">Update</a>
+<a href="/">Cancel</a>
