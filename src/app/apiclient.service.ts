@@ -23,6 +23,10 @@ export class ApiclientService {
     return this.http.get<any>("https://localhost:44396/article/"+id, {                                                                                                                                                                                 
       headers: new HttpHeaders ({'Authorization': localStorage.getItem("username")+':'+localStorage.getItem("password")})})
   }
+  public getSubArticles(articleId) : Observable<any> {
+    return this.http.get<any>("https://localhost:44396/subarticle/admin/article/"+articleId, {                                                                                                                                                                                 
+      headers: new HttpHeaders ({'Authorization': localStorage.getItem("username")+':'+localStorage.getItem("password")})})
+  }
   public getArticles() : Observable<any> {
     return this.http.get<any>("https://localhost:44396/article/all", {                                                                                                                                                                                 
       headers: new HttpHeaders ({'Authorization': localStorage.getItem("username")+':'+localStorage.getItem("password")})})

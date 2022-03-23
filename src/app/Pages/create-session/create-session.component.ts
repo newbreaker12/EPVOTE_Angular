@@ -11,26 +11,23 @@ import { ApiclientService } from 'src/app/apiclient.service';
 })
 export class CreateSessionComponent implements OnInit {
 
+  id = ''
   articleId = "";
   description = "";
   name = "";
   from = "";
   to = "";
 
-    range = new FormGroup({
-      start: new FormControl(),
-      end: new FormControl(),
-    });
-
   constructor(public client : ApiclientService, 
     private readonly route: ActivatedRoute) { }
 
   ngOnInit() {
     this.articleId = this.route.snapshot.paramMap.get("id");
+    
   }
 
   public createSession(){
-    const body = { name: this.name, description: this.description, articleId: this.articleId, to: this.to, from: this.from }
+    const body = { name: this.name, description: this.description, articleId: Number(this.articleId), to: this.to, from: this.from }
     this.client.createSession(body)
     .subscribe(response =>{
       if(response.data === 'ok') {

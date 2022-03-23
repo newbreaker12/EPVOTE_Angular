@@ -13,9 +13,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './Pages/login/login.component';
-import { CreateComponent } from './Pages/create/create.component';
-import { CreateVoteComponent } from './Pages/create-vote/create-vote.component';
+import { CreateComponent } from './Pages/create-edit-article/create.component';
 import { CreateSessionComponent } from './Pages/create-session/create-session.component';
+import { ArticleDetailsComponent } from './Pages/article-details/article-details.component';
 
 
 const routes: Routes = [
@@ -25,6 +25,7 @@ const routes: Routes = [
   { path: 'session/create/:id', component: CreateSessionComponent },
   { path: 'article/create', component: CreateComponent },
   { path: 'article/edit/:id', component: CreateComponent },
+  { path: 'article/:id', component: ArticleDetailsComponent },
 ];
 
 @NgModule({
@@ -33,8 +34,8 @@ const routes: Routes = [
     DashboardComponent,
     LoginComponent,
     CreateComponent,
-    CreateVoteComponent,
-    CreateSessionComponent
+    CreateSessionComponent,
+    ArticleDetailsComponent
   ],
   imports: [
     HttpClientModule,
