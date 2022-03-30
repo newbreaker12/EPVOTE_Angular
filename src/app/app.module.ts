@@ -16,6 +16,7 @@ import { LoginComponent } from './Pages/login/login.component';
 import { CreateComponent } from './Pages/create-edit-article/create.component';
 import { CreateSessionComponent } from './Pages/create-session/create-session.component';
 import { ArticleDetailsComponent } from './Pages/article-details/article-details.component';
+import { CreateSubarticleComponent } from './Pages/create-subarticle/create-subarticle.component';
 
 
 const routes: Routes = [
@@ -35,7 +36,8 @@ const routes: Routes = [
     LoginComponent,
     CreateComponent,
     CreateSessionComponent,
-    ArticleDetailsComponent
+    ArticleDetailsComponent,
+    CreateSubarticleComponent
   ],
   imports: [
     HttpClientModule,
@@ -57,6 +59,7 @@ const routes: Routes = [
   ],
   providers: [],
   bootstrap: [AppComponent
-  ]
+  ],
+  entryComponents: [CreateSubarticleComponent],
 })
 export class AppModule { }

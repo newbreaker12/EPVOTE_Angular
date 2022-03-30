@@ -22,7 +22,16 @@ export class LoginComponent implements OnInit {
           if (result === 'TRUE'){
             localStorage.setItem('username', this.username);
             localStorage.setItem('password', this.password);
+            this.client.getUserByEmail().subscribe(
+              result => {
+                localStorage.setItem('firstName', result.data.firstName);
+                let roleStorage = ""
+                for(let role of result.data.roles) {
+                  roleStorage += role.name + ","
+                }
+                localStorage.setItem('roles', roleStorage);
             window.open("/", "_self");
+              });
           } else {
             window.open("/login", "_self");
           }

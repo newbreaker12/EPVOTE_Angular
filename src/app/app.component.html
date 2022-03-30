@@ -9,15 +9,16 @@
     <li class="nav-item active">
       <a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">New voting period</a>
+    <li *ngIf="hasRole('ADMIN')" class="nav-item">
+      <a class="nav-link" href="#">User Manager</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#">Groups</a>
     </li>
   </ul>
   <form class="form-inline my-2 my-lg-0">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Username</button>
+    <p class="navbar-brand">{{this.email}}</p>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="this.logout()">logout</button>
   </form>
 </div>
 </nav>

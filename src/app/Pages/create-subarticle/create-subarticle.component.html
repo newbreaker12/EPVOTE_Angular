@@ -1,0 +1,14 @@
+<div class="parent">
+<div class="container">
+
+
+<h3>Name:</h3>
+<input type="text" name="name"  [(ngModel)]="data.subArticle.name">
+<h3>Description:</h3>
+<input type="text" name="description"  [(ngModel)]="data.subArticle.description">
+<div>
+  <button (click)="onNoClick()">Cancel</button>
+  <button (click)="save()" >Save</button>
+</div>
+</div>
+</div>

@@ -13,6 +13,18 @@ export class ApiclientService {
     return this.http.post<any>("https://localhost:44396/article", article, {                                                                                                                                                                                 
       headers: new HttpHeaders ({'Authorization': localStorage.getItem("username")+':'+localStorage.getItem("password")})})
   }
+  public createSubArticle(subArticle) : Observable<any> {
+    return this.http.post<any>("https://localhost:44396/subarticle", subArticle, {                                                                                                                                                                                 
+      headers: new HttpHeaders ({'Authorization': localStorage.getItem("username")+':'+localStorage.getItem("password")})})
+  }
+  public updateSubArticle(subArticle) : Observable<any> {
+    return this.http.put<any>("https://localhost:44396/subarticle", subArticle, {                                                                                                                                                                                 
+      headers: new HttpHeaders ({'Authorization': localStorage.getItem("username")+':'+localStorage.getItem("password")})})
+  }
+  public deleteSubArticle(id) : Observable<any> {
+    return this.http.delete<any>("https://localhost:44396/subarticle/" + id, {                                                                                                                                                                                 
+      headers: new HttpHeaders ({'Authorization': localStorage.getItem("username")+':'+localStorage.getItem("password")})})
+  }
 
   public editArticle(article) : Observable<any> {
     return this.http.put<any>("https://localhost:44396/article", article, {                                                                                                                                                                                 
@@ -45,6 +57,11 @@ export class ApiclientService {
   }
 
   public authenticate(username : string, password : string) : Observable<any>{
-    return this.http.get("https://localhost:44396/users/login")
+    return this.http.get("https://localhost:44396/users/login", {                                                                                                                                                                                 
+      headers: new HttpHeaders ({'Authorization': username+':'+password})})
     }
+    public getUserByEmail() : Observable<any>{
+      return this.http.get("https://localhost:44396/users/email", {                                                                                                                                                                                 
+        headers: new HttpHeaders ({'Authorization': localStorage.getItem("username")+':'+localStorage.getItem("password")})})
+      }
 }
