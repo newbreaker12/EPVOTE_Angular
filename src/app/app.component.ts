@@ -8,20 +8,11 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'voteangular';
   email = ''
-  roles= ''
+  role= ''
   
   constructor() {
     this.email = localStorage.getItem("username");
-    this.roles = localStorage.getItem("roles");
-  }
-
-  public hasRole(roleName: string) {
-    if (this.roles) {
-      return this.roles.split(',').findIndex(element => {
-        if (element.includes(roleName))
-          return true;
-      }) !== -1
-    }
+    this.role = localStorage.getItem("roles");
   }
 
   public logout(){

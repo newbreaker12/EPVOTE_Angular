@@ -17,10 +17,19 @@ import { CreateComponent } from './Pages/create-edit-article/create.component';
 import { CreateSessionComponent } from './Pages/create-session/create-session.component';
 import { ArticleDetailsComponent } from './Pages/article-details/article-details.component';
 import { CreateSubarticleComponent } from './Pages/create-subarticle/create-subarticle.component';
+import { ManagerGroupsComponent } from './Pages/manager-groups/manager-groups.component';
+import { ManagerUsersComponent } from './Pages/manager-users/manager-users.component';
+import { ManagerUsersCreateComponent } from './Pages/manager-users-create/manager-users-create.component';
 
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
+  { path: 'groups', component: ManagerGroupsComponent },
+  { path: 'groups/create', component: ManagerGroupsComponent },
+  { path: 'groups/edit/:id', component: ManagerGroupsComponent },
+  { path: 'users', component: ManagerUsersComponent },
+  { path: 'users/create', component: ManagerUsersCreateComponent },
+  { path: 'users/edit/:id', component: ManagerUsersCreateComponent },
   { path: 'login', component: LoginComponent },
   { path: 'session/create', component: CreateSessionComponent },
   { path: 'session/create/:id', component: CreateSessionComponent },
@@ -37,7 +46,10 @@ const routes: Routes = [
     CreateComponent,
     CreateSessionComponent,
     ArticleDetailsComponent,
-    CreateSubarticleComponent
+    CreateSubarticleComponent,
+    ManagerGroupsComponent,
+    ManagerUsersComponent,
+    ManagerUsersCreateComponent
   ],
   imports: [
     HttpClientModule,

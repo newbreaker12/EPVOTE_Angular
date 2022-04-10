@@ -23,13 +23,9 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('username', this.username);
             localStorage.setItem('password', this.password);
             this.client.getUserByEmail().subscribe(
-              result => {
-                localStorage.setItem('firstName', result.data.firstName);
-                let roleStorage = ""
-                for(let role of result.data.roles) {
-                  roleStorage += role.name + ","
-                }
-                localStorage.setItem('roles', roleStorage);
+              result2 => {
+                localStorage.setItem('firstName', result2.data.firstName);
+                localStorage.setItem('roles', result2.data.role.name);
             window.open("/", "_self");
               });
           } else {

@@ -1,0 +1,35 @@
+<div class="container">
+    <h1> New user creation: </h1>
+
+    <h3>Political group:</h3>
+    <div class="dropdown">
+        <button class="dropbtn">{{this.groupId}}</button>
+        <div class="dropdown-content">
+            <a *ngFor="let item of groups" (click)="this.groupId = item.id">{{item.name}}</a>
+        </div>
+    </div>
+    <h3>Political group:</h3>
+    <div class="dropdown">
+        <button class="dropbtn">{{this.roleId}}</button>
+        <div class="dropdown-content">
+            <a *ngFor="let item of roles" (click)="this.roleId = item.id">{{item.name}}</a>
+        </div>
+    </div>
+
+
+    <h3>First Name:</h3>
+    <input type="text" name="firstName" [(ngModel)]="firstName">
+    <br />
+    <h3>Last Name:</h3>
+    <input type="text" name="lastName" [(ngModel)]="lastName">
+    <br />
+    <h3>Password:</h3>
+    <input type="text" name="password" [(ngModel)]="password">
+    <br />
+    <h3>Is he a MEP?</h3>
+    <input type="text" name="isMEP" [(ngModel)]="isMEP">
+    <br />
+    <a *ngIf="!this.id" (click)="this.create()">Create</a>
+    <a *ngIf="this.id" (click)="this.edit()">Update</a>
+    <a href="/">Cancel</a>
+</div>

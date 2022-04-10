@@ -30,9 +30,21 @@ export class ApiclientService {
     return this.http.put<any>("https://localhost:44396/article", article, {                                                                                                                                                                                 
       headers: new HttpHeaders ({'Authorization': localStorage.getItem("username")+':'+localStorage.getItem("password")})})
   }
+  public createUser(user) : Observable<any> {
+    return this.http.post<any>("https://localhost:44396/users", user, {                                                                                                                                                                                 
+      headers: new HttpHeaders ({'Authorization': localStorage.getItem("username")+':'+localStorage.getItem("password")})})
+  }
+  public editUser(user) : Observable<any> {
+    return this.http.put<any>("https://localhost:44396/users", user, {                                                                                                                                                                                 
+      headers: new HttpHeaders ({'Authorization': localStorage.getItem("username")+':'+localStorage.getItem("password")})})
+  }
 
   public getArticle(id) : Observable<any> {
     return this.http.get<any>("https://localhost:44396/article/"+id, {                                                                                                                                                                                 
+      headers: new HttpHeaders ({'Authorization': localStorage.getItem("username")+':'+localStorage.getItem("password")})})
+  }
+  public getUser(id) : Observable<any> {
+    return this.http.get<any>("https://localhost:44396/users/"+id, {                                                                                                                                                                                 
       headers: new HttpHeaders ({'Authorization': localStorage.getItem("username")+':'+localStorage.getItem("password")})})
   }
   public getSubArticles(articleId) : Observable<any> {
@@ -45,6 +57,14 @@ export class ApiclientService {
   }
   public getGroups() : Observable<any> {
     return this.http.get<any>("https://localhost:44396/groups/all", {                                                                                                                                                                                 
+      headers: new HttpHeaders ({'Authorization': localStorage.getItem("username")+':'+localStorage.getItem("password")})})
+  }
+  public getRoles() : Observable<any> {
+    return this.http.get<any>("https://localhost:44396/roles/all", {                                                                                                                                                                                 
+      headers: new HttpHeaders ({'Authorization': localStorage.getItem("username")+':'+localStorage.getItem("password")})})
+  }
+  public getUsers() : Observable<any> {
+    return this.http.get<any>("https://localhost:44396/users/all", {                                                                                                                                                                                 
       headers: new HttpHeaders ({'Authorization': localStorage.getItem("username")+':'+localStorage.getItem("password")})})
   }
   public createVote() : Observable<any> {
