@@ -20,13 +20,14 @@ import { CreateSubarticleComponent } from './Pages/create-subarticle/create-suba
 import { ManagerGroupsComponent } from './Pages/manager-groups/manager-groups.component';
 import { ManagerUsersComponent } from './Pages/manager-users/manager-users.component';
 import { ManagerUsersCreateComponent } from './Pages/manager-users-create/manager-users-create.component';
+import { ManagerGroupCreateComponent } from './Pages/manager-group-create/manager-group-create.component';
 
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
   { path: 'groups', component: ManagerGroupsComponent },
-  { path: 'groups/create', component: ManagerGroupsComponent },
-  { path: 'groups/edit/:id', component: ManagerGroupsComponent },
+  { path: 'groups/create', component: ManagerGroupCreateComponent },
+  { path: 'groups/edit/:id', component: ManagerGroupCreateComponent },
   { path: 'users', component: ManagerUsersComponent },
   { path: 'users/create', component: ManagerUsersCreateComponent },
   { path: 'users/edit/:id', component: ManagerUsersCreateComponent },

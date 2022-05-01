@@ -59,6 +59,10 @@ export class ApiclientService {
     return this.http.get<any>("https://localhost:44396/groups/all", {                                                                                                                                                                                 
       headers: new HttpHeaders ({'Authorization': localStorage.getItem("username")+':'+localStorage.getItem("password")})})
   }
+  public getGroup(id: string) : Observable<any> {
+    return this.http.get<any>("https://localhost:44396/groups/" + id, {                                                                                                                                                                                 
+      headers: new HttpHeaders ({'Authorization': localStorage.getItem("username")+':'+localStorage.getItem("password")})})
+  }
   public getRoles() : Observable<any> {
     return this.http.get<any>("https://localhost:44396/roles/all", {                                                                                                                                                                                 
       headers: new HttpHeaders ({'Authorization': localStorage.getItem("username")+':'+localStorage.getItem("password")})})
@@ -84,4 +88,14 @@ export class ApiclientService {
       return this.http.get("https://localhost:44396/users/email", {                                                                                                                                                                                 
         headers: new HttpHeaders ({'Authorization': localStorage.getItem("username")+':'+localStorage.getItem("password")})})
       }
+
+      
+  public editGroup(group) : Observable<any> {
+    return this.http.put<any>("https://localhost:44396/groups", group, {                                                                                                                                                                                 
+      headers: new HttpHeaders ({'Authorization': localStorage.getItem("username")+':'+localStorage.getItem("password")})})
+  }
+  public createGroup(group) : Observable<any> {
+    return this.http.post<any>("https://localhost:44396/groups", group, {                                                                                                                                                                                 
+      headers: new HttpHeaders ({'Authorization': localStorage.getItem("username")+':'+localStorage.getItem("password")})})
+  }
 }

@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   public onClickLogin() {
     this.client.authenticate(this.username, this.password).subscribe(
         result => {
-          if (result === 'TRUE'){
+          if (result.data === 'ok'){
             localStorage.setItem('username', this.username);
             localStorage.setItem('password', this.password);
             this.client.getUserByEmail().subscribe(
