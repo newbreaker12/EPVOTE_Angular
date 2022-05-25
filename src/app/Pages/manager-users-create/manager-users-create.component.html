@@ -3,14 +3,14 @@
 
     <h3>Political group:</h3>
     <div class="dropdown">
-        <button class="dropbtn">{{this.groupId}}</button>
+        <button class="dropbtn">Select</button>
         <div class="dropdown-content">
             <a *ngFor="let item of groups" (click)="this.groupId = item.id">{{item.name}}</a>
         </div>
     </div>
     <h3>Political group:</h3>
     <div class="dropdown">
-        <button class="dropbtn">{{this.roleId}}</button>
+        <button class="dropbtn">Select}</button>
         <div class="dropdown-content">
             <a *ngFor="let item of roles" (click)="this.roleId = item.id">{{item.name}}</a>
         </div>
@@ -23,13 +23,21 @@
     <h3>Last Name:</h3>
     <input type="text" name="lastName" [(ngModel)]="lastName">
     <br />
+    <h3>Email</h3>
+    <input type="text" name="email" [(ngModel)]="email">
+    <br />
     <h3>Password:</h3>
     <input type="text" name="password" [(ngModel)]="password">
     <br />
     <h3>Is he a MEP?</h3>
-    <input type="text" name="isMEP" [(ngModel)]="isMEP">
-    <br />
-    <a *ngIf="!this.id" (click)="this.create()">Create</a>
-    <a *ngIf="this.id" (click)="this.edit()">Update</a>
+    <div class="dropdown">
+        <button class="dropbtn">Select</button>
+        <div class="dropdown-content">
+            <a (click)="this.isMEP = true">Yes</a>
+            <a (click)="this.isMEP = false">No</a>
+        </div>
+    </div>
+    <a class="a-clickable" *ngIf="!this.id" (click)="this.create()">Create</a>
+    <a class="a-clickable" *ngIf="this.id" (click)="this.edit()">Update</a>
     <a href="/">Cancel</a>
 </div>

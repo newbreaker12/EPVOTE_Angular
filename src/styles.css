@@ -49,3 +49,10 @@
   .disabled .dropbtn {
     background-color: gray;
   }
+  .a-clickable {
+    cursor: pointer;
+    color: blue !important;
+  }
+  .a-clickable:hover {
+    text-decoration: underline !important;
+  }

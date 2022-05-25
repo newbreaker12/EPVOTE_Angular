@@ -5,7 +5,7 @@
     <h3>Abbreviation:</h3>
     <input type="text" name="readableId" [(ngModel)]="readableId">
     <br />
-    <a *ngIf="!this.id" (click)="this.create()">Create</a>
-    <a *ngIf="this.id" (click)="this.edit()">Update</a>
+    <a class="a-clickable" *ngIf="!this.id" (click)="this.create()">Create</a>
+    <a class="a-clickable" *ngIf="this.id" (click)="this.edit()">Update</a>
     <a href="/">Cancel</a>
 </div>

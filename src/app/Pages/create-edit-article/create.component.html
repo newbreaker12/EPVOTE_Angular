@@ -16,6 +16,6 @@
 <h3>Description:</h3>
 <input type="text" name="description"  [(ngModel)]="description">
 
-<a *ngIf="!this.id" (click)="this.createArticle()">Create</a>
-<a *ngIf="this.id" (click)="this.editArticle()">Update</a>
+<a class="a-clickable" *ngIf="!this.id" (click)="this.createArticle()">Create</a>
+<a class="a-clickable" *ngIf="this.id" (click)="this.editArticle()">Update</a>
 <a href="/">Cancel</a>

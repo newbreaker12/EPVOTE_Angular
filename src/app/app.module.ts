@@ -50,7 +50,8 @@ const routes: Routes = [
     CreateSubarticleComponent,
     ManagerGroupsComponent,
     ManagerUsersComponent,
-    ManagerUsersCreateComponent
+    ManagerUsersCreateComponent,
+    ManagerGroupCreateComponent
   ],
   imports: [
     HttpClientModule,
