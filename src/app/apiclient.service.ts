@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ApiclientService {
 
+
   constructor(public http: HttpClient) { }
 
   public createArticle(article) : Observable<any> {
@@ -38,7 +39,10 @@ export class ApiclientService {
     return this.http.put<any>("https://localhost:44396/users", user, {                                                                                                                                                                                 
       headers: new HttpHeaders ({'Authorization': localStorage.getItem("username")+':'+localStorage.getItem("password")})})
   }
-
+  public deleteUser(id: string) {
+    return this.http.delete<any>("https://localhost:44396/users/" + id, {                                                                                                                                                                                 
+      headers: new HttpHeaders ({'Authorization': localStorage.getItem("username")+':'+localStorage.getItem("password")})})
+  }
   public getArticle(id) : Observable<any> {
     return this.http.get<any>("https://localhost:44396/article/"+id, {                                                                                                                                                                                 
       headers: new HttpHeaders ({'Authorization': localStorage.getItem("username")+':'+localStorage.getItem("password")})})
@@ -96,6 +100,10 @@ export class ApiclientService {
   }
   public createGroup(group) : Observable<any> {
     return this.http.post<any>("https://localhost:44396/groups", group, {                                                                                                                                                                                 
+      headers: new HttpHeaders ({'Authorization': localStorage.getItem("username")+':'+localStorage.getItem("password")})})
+  }
+  public deleteGroup(id: string) : Observable<any> {
+    return this.http.delete<any>("https://localhost:44396/groups/" + id, {                                                                                                                                                                                 
       headers: new HttpHeaders ({'Authorization': localStorage.getItem("username")+':'+localStorage.getItem("password")})})
   }
 }

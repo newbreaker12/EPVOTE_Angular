@@ -10,7 +10,7 @@ import { ApiclientService } from 'src/app/apiclient.service';
 export class ManagerUsersComponent implements OnInit {
 
 users = []
-displayedColumns = ["id","email","firstName","lastName","password","groups","roles","isMEP","edit"]
+displayedColumns = ["id","email","firstName","lastName","password","groups","roles","isMEP","edit","delete"]
 dataSource = new MatTableDataSource<any>();
 @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -31,4 +31,11 @@ ngOnInit() {
 public edit(id: string) {
   window.open("/users/edit/" + id, "_self");
 }
+
+public delete(id: string) {
+  this.client.deleteUser(id).subscribe(response => {
+    this.client.getUsers().subscribe(response => this.dataSource.data = response.data);
+  });
+}
+
 }

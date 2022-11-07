@@ -32,15 +32,15 @@ export class ManagerGroupCreateComponent implements OnInit {
     this.client.createGroup(body)
     .subscribe(response =>{
       if(response.data === 'ok') {
-        window.open("/users", "_self");
+        window.open("/groups", "_self");
     }})
   }
   public edit(){
     const body = { id: Number(this.id), name: this.name, readableId: this.readableId}
     this.client.editGroup(body)
     .subscribe(response =>{
-      if(response.data === 'ok') {
-        window.open("/users", "_self");
+      if(response.data) {
+        window.open("/groups", "_self");
     }})
   }
 

@@ -21,6 +21,8 @@ import { ManagerGroupsComponent } from './Pages/manager-groups/manager-groups.co
 import { ManagerUsersComponent } from './Pages/manager-users/manager-users.component';
 import { ManagerUsersCreateComponent } from './Pages/manager-users-create/manager-users-create.component';
 import { ManagerGroupCreateComponent } from './Pages/manager-group-create/manager-group-create.component';
+import { ToastrModule } from 'ngx-toastr'; 
+
 
 
 const routes: Routes = [
@@ -70,10 +72,10 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatNativeDateModule,
     MatDatepickerModule,
-  ],
+    ToastrModule.forRoot({ closeButton: true })
+    ],
   providers: [],
-  bootstrap: [AppComponent
-  ],
+  bootstrap: [AppComponent  ],
   entryComponents: [CreateSubarticleComponent],
 })
 export class AppModule { }
