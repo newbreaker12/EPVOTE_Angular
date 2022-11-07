@@ -34,6 +34,9 @@ export class ManagerGroupsComponent implements OnInit {
       } else {
         this.client.getGroups().subscribe(response => this.dataSource.data = response.data);
       }
-    });
+    }, error => {
+      this.toastrService.error(error.error.data); 
+    }
+    );
   }
 }
