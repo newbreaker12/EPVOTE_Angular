@@ -1,8 +1,10 @@
-<a href="/users/create">Create new user</a>
+<mat-card>
+  <a class="btn btn-primary" href="/users/create">Create new user</a>
+  
+</mat-card>
+<mat-paginator [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>
 
-<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-
-<table style="width: 100%;" mat-table [dataSource]="dataSource" matSort class="display-table">
+<table style="width: 100%;" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
 
   <ng-container matColumnDef="id">
@@ -20,10 +22,6 @@
   <ng-container matColumnDef="lastName">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
     <td mat-cell *matCellDef="let item">{{item.lastName}}</td>
-  </ng-container>
-  <ng-container matColumnDef="password">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Password</th>
-    <td mat-cell *matCellDef="let item">{{item.password}}</td>
   </ng-container>
   <ng-container matColumnDef="groups">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Groups</th>
@@ -43,14 +41,14 @@
   <ng-container matColumnDef="edit">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>edit</th>
     <td mat-cell *matCellDef="let item">
-      <button (click)="this.edit(item.id)">edit</button> 
+      <button (click)="this.edit(item.id)" class="btn btn-secondary">edit</button> 
     </td>
   </ng-container>
 
   <ng-container matColumnDef="delete">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>delete</th>
     <td mat-cell *matCellDef="let item">
-      <button (click)="this.delete(item.id)">delete</button>
+      <button (click)="this.delete(item.id)" class="btn btn-danger">delete</button>
     </td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

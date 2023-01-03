@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ApiclientService } from 'src/app/apiclient.service';
 
 @Component({
@@ -20,11 +21,13 @@ export class ManagerUsersCreateComponent implements OnInit {
   roles = [];
   groupId= "";
   roleId = "";
-  groupName = "--";
-  roleName = "--";
+  groupName = "";
+  roleName = "";
 
   constructor(public client : ApiclientService, 
-    private readonly route: ActivatedRoute) { }
+    private readonly route: ActivatedRoute,
+    private toastrService: ToastrService
+    ) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get("id");
@@ -59,7 +62,13 @@ export class ManagerUsersCreateComponent implements OnInit {
     .subscribe(response =>{
       if(response.data === 'ok') {
         window.open("/users", "_self");
-    }})
+    } else {
+      this.toastrService.error(response.data); 
+    }
+  }, error => {
+      console.log(error);
+      this.toastrService.error(error.error.data); 
+    })
   }
   public edit(){
     const body = { id: Number(this.id), firstName: this.firstName, lastName: this.lastName, email: this.email, 
@@ -68,7 +77,12 @@ export class ManagerUsersCreateComponent implements OnInit {
     .subscribe(response =>{
       if(response.data === 'ok') {
         window.open("/users", "_self");
-    }})
+    } else {
+      this.toastrService.error(response.data); 
+    }}, error => {
+      console.log(error);
+      this.toastrService.error(error.error.data); 
+    })
   }
 
 

@@ -1,8 +1,10 @@
-<a href="/article/create">Create</a>
+<mat-card>
+  <a href="/article/create"><button type="button" class="btn btn-primary">Create</button></a>
+</mat-card>
 
-<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+<mat-paginator [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>
 
-<table style="width: 100%;" mat-table [dataSource]="dataSource" matSort class="display-table">
+<table style="width: 100%;" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>

@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule, MatOptionModule, MatSelectModule, MatSortModule } from '@angular/material';
+import { MatCardModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule, MatOptionModule, MatSelectModule, MatSortModule } from '@angular/material';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,6 +22,7 @@ import { ManagerUsersComponent } from './Pages/manager-users/manager-users.compo
 import { ManagerUsersCreateComponent } from './Pages/manager-users-create/manager-users-create.component';
 import { ManagerGroupCreateComponent } from './Pages/manager-group-create/manager-group-create.component';
 import { ToastrModule } from 'ngx-toastr'; 
+import { CommonModule } from '@angular/common';
 
 
 
@@ -68,11 +69,27 @@ const routes: Routes = [
     MatFormFieldModule,
     MatOptionModule,
     MatInputModule,
+    MatPaginatorModule,
     MatSelectModule,
     ReactiveFormsModule,
     MatNativeDateModule,
     MatDatepickerModule,
+    MatTableModule,
+    CommonModule,
+    MatInputModule,
+    MatSelectModule,
+    MatCardModule,
+    MatSortModule,
+    MatPaginatorModule,
     ToastrModule.forRoot({ closeButton: true })
+    ],
+    exports: [
+      MatTableModule,
+      MatInputModule,
+      MatSelectModule,
+      MatCardModule,
+      MatSortModule,
+      MatPaginatorModule,
     ],
   providers: [],
   bootstrap: [AppComponent  ],
