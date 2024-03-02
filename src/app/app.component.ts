@@ -9,7 +9,7 @@ export class AppComponent {
   title = 'voteangular';
   email = ''
   role= ''
-  
+
   constructor() {
     this.email = localStorage.getItem("username");
     this.role = localStorage.getItem("roles");
@@ -22,5 +22,8 @@ export class AppComponent {
     localStorage.removeItem('roles');
     window.open("/login", "_self");
   }
-
+  public loggedIn() {
+    return localStorage.getItem('username') &&
+    localStorage.getItem('password');
+  }
 }
