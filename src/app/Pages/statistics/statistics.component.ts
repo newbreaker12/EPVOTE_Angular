@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
 import { ApiclientService } from 'src/app/apiclient.service';
+import { PieComponent } from '../pie/pie.component';
+import { Statistics } from 'src/app/models/statistics';
 
 @Component({
   selector: 'app-statistics',
@@ -16,12 +18,16 @@ export class StatisticsComponent implements OnInit {
   displayedColumns = ["articleName","subArticleName","voteInFavourCount"
   ,"voteNotInFavourCount"
   ,"voteNeutralCount"]
-  dataSource = new MatTableDataSource<any>();
-  data: any[];
+  dataSource = new MatTableDataSource<Statistics>();
+  data: Statistics[];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(public client : ApiclientService, private toastrService: ToastrService) { }
+  constructor(
+    public client : ApiclientService,
+    private toastrService: ToastrService,
+    private dialog: MatDialog
+    ) { }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
@@ -41,5 +47,22 @@ export class StatisticsComponent implements OnInit {
       return;
     }
     this.dataSource.data = this.data.filter(i => i.groupName === this.selectedValue);
+  }
+  clickRow(s: Statistics) {
+    this.dialog.open(PieComponent, {
+      data: this.data.filter(i => i.subArticleName === s.subArticleName)
+      .map(i => {
+        return [{
+          name: 'voteInFavourCount',
+          y: s.voteInFavourCount
+        },{
+          name: 'voteNeutralCount',
+          y: s.voteNeutralCount
+        },{
+          name: 's.voteNotInFavourCount',
+          y: s.voteNotInFavourCount
+        }]
+      })
+    })
   }
 }

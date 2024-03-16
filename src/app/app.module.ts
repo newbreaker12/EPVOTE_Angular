@@ -25,6 +25,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { HistoryComponent } from './Pages/history/history.component';
 import { StatisticsComponent } from './Pages/statistics/statistics.component';
+import { PieComponent } from './Pages/pie/pie.component';
 
 
 
@@ -60,16 +61,17 @@ const routes: Routes = [
     ManagerUsersCreateComponent,
     ManagerGroupCreateComponent,
     HistoryComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    PieComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
+    CanvasJSAngularChartsModule,
     FormsModule,
     AppRoutingModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
-    MatTableModule,
     MatPaginatorModule,
     MatSortModule,
     MatFormFieldModule,
@@ -100,6 +102,6 @@ const routes: Routes = [
     ],
   providers: [],
   bootstrap: [AppComponent  ],
-  entryComponents: [CreateSubarticleComponent],
+  entryComponents: [CreateSubarticleComponent, PieComponent],
 })
 export class AppModule { }
