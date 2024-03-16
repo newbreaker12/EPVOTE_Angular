@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { ApiclientService } from 'src/app/apiclient.service';
 
 @Component({
@@ -8,7 +9,10 @@ import { ApiclientService } from 'src/app/apiclient.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public client : ApiclientService) { }
+  constructor(
+    public client : ApiclientService,
+    public toastrService: ToastrService
+    ) { }
 
   username = "";
   password = "";
@@ -33,6 +37,7 @@ export class LoginComponent implements OnInit {
           }
         },
         error => {
+          this.toastrService.warning(error.error.data);
         }
     );
 }

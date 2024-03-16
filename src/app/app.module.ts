@@ -21,8 +21,10 @@ import { ManagerGroupsComponent } from './Pages/manager-groups/manager-groups.co
 import { ManagerUsersComponent } from './Pages/manager-users/manager-users.component';
 import { ManagerUsersCreateComponent } from './Pages/manager-users-create/manager-users-create.component';
 import { ManagerGroupCreateComponent } from './Pages/manager-group-create/manager-group-create.component';
-import { ToastrModule } from 'ngx-toastr'; 
+import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
+import { HistoryComponent } from './Pages/history/history.component';
+import { StatisticsComponent } from './Pages/statistics/statistics.component';
 
 
 
@@ -40,6 +42,8 @@ const routes: Routes = [
   { path: 'article/create', component: CreateComponent },
   { path: 'article/edit/:id', component: CreateComponent },
   { path: 'article/:id', component: ArticleDetailsComponent },
+  { path: 'history', component: HistoryComponent },
+  { path: 'statistics', component: StatisticsComponent },
 ];
 
 @NgModule({
@@ -54,7 +58,9 @@ const routes: Routes = [
     ManagerGroupsComponent,
     ManagerUsersComponent,
     ManagerUsersCreateComponent,
-    ManagerGroupCreateComponent
+    ManagerGroupCreateComponent,
+    HistoryComponent,
+    StatisticsComponent
   ],
   imports: [
     HttpClientModule,
@@ -87,6 +93,7 @@ const routes: Routes = [
       MatTableModule,
       MatInputModule,
       MatSelectModule,
+      MatFormFieldModule,
       MatCardModule,
       MatSortModule,
       MatPaginatorModule,

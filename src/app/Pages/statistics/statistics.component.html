@@ -1,0 +1,48 @@
+
+<mat-form-field>
+  <mat-label>Favorite food</mat-label>
+  <mat-select [(ngModel)]="selectedValue" name="filter"
+  (selectionChange)="filter()">
+  <mat-option [value]="'none'">None</mat-option>
+  <mat-option [value]="'all'">All</mat-option>
+    <mat-option
+    *ngFor="let item of groups"
+     [value]="item">{{item}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-paginator [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>
+
+<table style="width: 100%;" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+  <ng-container matColumnDef="articleName">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Article Name</th>
+    <td mat-cell *matCellDef="let item">{{item.articleName}}</td>
+  </ng-container>
+  <ng-container matColumnDef="subArticleName">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Sub Article Name</th>
+    <td mat-cell *matCellDef="let item">{{item.subArticleName}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="voteInFavourCount">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>In Favour</th>
+    <td mat-cell *matCellDef="let item">{{item.voteInFavourCount}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="voteNotInFavourCount">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Not In Favour</th>
+    <td mat-cell *matCellDef="let item">{{item.voteNotInFavourCount}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="voteNeutralCount">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Neutral</th>
+    <td mat-cell *matCellDef="let item">{{item.voteNeutralCount}}
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
