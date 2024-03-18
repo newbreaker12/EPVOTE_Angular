@@ -30,22 +30,23 @@ import { PieComponent } from './Pages/pie/pie.component';
 
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent },
-  { path: 'groups', component: ManagerGroupsComponent },
-  { path: 'groups/create', component: ManagerGroupCreateComponent },
-  { path: 'groups/edit/:id', component: ManagerGroupCreateComponent },
-  { path: 'users', component: ManagerUsersComponent },
-  { path: 'users/create', component: ManagerUsersCreateComponent },
-  { path: 'users/edit/:id', component: ManagerUsersCreateComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'session/create', component: CreateSessionComponent },
-  { path: 'session/create/:id', component: CreateSessionComponent },
-  { path: 'article/create', component: CreateComponent },
-  { path: 'article/edit/:id', component: CreateComponent },
-  { path: 'article/:id', component: ArticleDetailsComponent },
-  { path: 'history', component: HistoryComponent },
-  { path: 'statistics', component: StatisticsComponent },
+  { path: '', component: DashboardComponent, data: { title: 'Dashboard' } },
+  { path: 'groups', component: ManagerGroupsComponent, data: { title: 'Manage Groups' } },
+  { path: 'groups/create', component: ManagerGroupCreateComponent, data: { title: 'Create Group' } },
+  { path: 'groups/edit/:id', component: ManagerGroupCreateComponent, data: { title: 'Edit Group' } },
+  { path: 'users', component: ManagerUsersComponent, data: { title: 'Manage Users' } },
+  { path: 'users/create', component: ManagerUsersCreateComponent, data: { title: 'Create User' } },
+  { path: 'users/edit/:id', component: ManagerUsersCreateComponent, data: { title: 'Edit User' } },
+  { path: 'login', component: LoginComponent, data: { title: 'Login' } },
+  { path: 'session/create', component: CreateSessionComponent, data: { title: 'Create Session' } },
+  { path: 'session/create/:id', component: CreateSessionComponent, data: { title: 'Edit Session' } },
+  { path: 'article/create', component: CreateComponent, data: { title: 'Create Article' } },
+  { path: 'article/edit/:id', component: CreateComponent, data: { title: 'Edit Article' } },
+  { path: 'article/:id', component: ArticleDetailsComponent, data: { title: 'Article Details' } },
+  { path: 'history', component: HistoryComponent, data: { title: 'History' } },
+  { path: 'statistics', component: StatisticsComponent, data: { title: 'Statistics' } },
 ];
+
 
 @NgModule({
     declarations: [

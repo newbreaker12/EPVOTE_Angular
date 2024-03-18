@@ -21,4 +21,8 @@ export class PieComponent {
   public chartHovered(e:any):void {
     console.log(e);
   }
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
+    // You can access the data passed to the dialog via this.data
+  }
 }
