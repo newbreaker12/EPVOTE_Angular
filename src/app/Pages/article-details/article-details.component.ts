@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
+//import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { ApiclientService } from 'src/app/apiclient.service';
 import { CreateSubarticleComponent } from '../create-subarticle/create-subarticle.component';
+
 
 @Component({
   selector: 'app-article-details',

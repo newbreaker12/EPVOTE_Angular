@@ -8,7 +8,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatCardModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule, MatOptionModule, MatSelectModule, MatSortModule } from '@angular/material';
+//import { MatCardModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule, MatOptionModule, MatSelectModule, MatSortModule } from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,6 +34,7 @@ import { CommonModule } from '@angular/common';
 import { HistoryComponent } from './Pages/history/history.component';
 import { StatisticsComponent } from './Pages/statistics/statistics.component';
 import { PieComponent } from './Pages/pie/pie.component';
+import { Component } from '@angular/core';
 
 
 
@@ -66,32 +75,27 @@ const routes: Routes = [
         PieComponent
     ],
     imports: [
-        HttpClientModule,
-        BrowserModule,
-        CanvasJSAngularChartsModule,
-        FormsModule,
-        AppRoutingModule,
-        RouterModule.forRoot(routes),
-        BrowserAnimationsModule,
-        MatPaginatorModule,
-        MatSortModule,
-        MatFormFieldModule,
-        MatOptionModule,
-        MatInputModule,
-        MatPaginatorModule,
-        MatSelectModule,
-        ReactiveFormsModule,
-        MatNativeDateModule,
-        MatDatepickerModule,
-        MatTableModule,
-        CommonModule,
-        MatInputModule,
-        MatSelectModule,
-        MatCardModule,
-        MatSortModule,
-        MatPaginatorModule,
-        ToastrModule.forRoot({ closeButton: true })
-    ],
+      HttpClientModule,
+      BrowserModule,
+      FormsModule,
+      ReactiveFormsModule,
+      AppRoutingModule,
+      RouterModule.forRoot(routes),
+      BrowserAnimationsModule,
+      MatPaginatorModule,
+      MatSortModule,
+      MatFormFieldModule,
+      MatOptionModule,
+      MatInputModule,
+      MatSelectModule,
+      MatNativeDateModule,
+      MatDatepickerModule,
+      MatTableModule,
+      MatCardModule,
+      CommonModule,
+      ToastrModule.forRoot({ closeButton: true }),
+
+  ],
     exports: [
         MatTableModule,
         MatInputModule,

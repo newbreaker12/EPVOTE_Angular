@@ -38,7 +38,7 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
+              //"extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -57,18 +57,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "voteangular:build"
+            "buildTarget": "voteangular:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "voteangular:build:production"
+              "buildTarget": "voteangular:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "voteangular:build"
+            "buildTarget": "voteangular:build"
           }
         },
         "test": {
