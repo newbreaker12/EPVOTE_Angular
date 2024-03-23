@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './Pages/dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -36,6 +36,7 @@ import { HistoryComponent } from './Pages/history/history.component';
 import { StatisticsComponent } from './Pages/statistics/statistics.component';
 import { PieComponent } from './Pages/pie/pie.component';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts'; // Import the component
+import { TokenInterceptor } from './token-interceptor';
 
 
 
@@ -107,7 +108,13 @@ const routes: Routes = [
         MatSortModule,
         MatPaginatorModule,
     ],
-    providers: [],
+    providers: [
+      {
+          provide: HTTP_INTERCEPTORS,
+          useClass: TokenInterceptor,
+          multi: true
+      }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

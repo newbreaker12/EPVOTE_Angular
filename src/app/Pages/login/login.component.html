@@ -1,5 +1,7 @@
 <div class="login-container">
-    <h1>Login</h1>
+  <div class="login-body">
+
+    <h2>Login</h2>
 
     <label for="username">Username:</label>
     <input id="username" type="text" [(ngModel)]="this.username" (keydown.enter)="onClickLogin()">
@@ -9,5 +11,5 @@
 
     <button id="btnLogin" (click)="onClickLogin()">Login</button>
 
-
   </div>
+</div>
