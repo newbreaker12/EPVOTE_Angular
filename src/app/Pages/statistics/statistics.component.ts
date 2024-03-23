@@ -54,19 +54,22 @@ export class StatisticsComponent implements OnInit {
   }
   clickRow(s: Statistics) {
     this.dialog.open(PieComponent, {
-      data: this.data.filter(i => i.subArticleName === s.subArticleName)
+      data: {
+        title: s.subArticleName,
+        total: s.voteCount,
+        dataPoints: this.data.filter(i => i.subArticleName === s.subArticleName)
       .map(i => {
         return [{
-          name: 'voteInFavourCount',
-          y: s.voteInFavourCount
+          name: 'In Favour',
+          y: s.voteInFavourCount / s.voteCount * 100
         },{
-          name: 'voteNeutralCount',
-          y: s.voteNeutralCount
+          name: 'Neutral',
+          y: s.voteNeutralCount / s.voteCount * 100
         },{
-          name: 's.voteNotInFavourCount',
-          y: s.voteNotInFavourCount
-        }]
-      })
-    })
+          name: 'Not In Favour',
+          y: s.voteNotInFavourCount / s.voteCount * 100
+        }] as { name: string, y: number}[]
+      })[0]
+    }});
   }
 }

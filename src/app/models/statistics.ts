@@ -3,8 +3,8 @@ export interface Statistics {
   subArticleName: string;
   articleName: string;
   groupName: string;
-  voteCount: string;
-  voteInFavourCount: string;
-  voteNotInFavourCount: string;
-  voteNeutralCount: string;
+  voteCount: number;
+  voteInFavourCount: number;
+  voteNotInFavourCount: number;
+  voteNeutralCount: number;
 }

@@ -9,21 +9,26 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog'; // Correct import fo
   styleUrls: ['./pie.component.css']
 })
 export class PieComponent {
-  // Pie
-  public pieChartLabels:string[] = ['Chrome', 'Safari', 'Firefox','Internet Explorer','Other'];
-  public pieChartData:number[] = [40, 20, 20 , 10,10];
-  public pieChartType:string = 'pie';
 
-  // events
-  public chartClicked(e:any):void {
-    console.log(e);
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: {
+      title: string,
+      total: number,
+     dataPoints: { name: string, y: number}[]
+    }) {
   }
 
-  public chartHovered(e:any):void {
-    console.log(e);
-  }
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
-    // You can access the data passed to the dialog via this.data
-  }
+  chartOptions = {
+	  animationEnabled: true,
+	  title: {
+		text: this.data.title
+	  },
+	  data: [{
+		type: "pie",
+		startAngle: -90,
+		indexLabel: "{name}: {y}",
+		yValueFormatString: "#,###.##'%'",
+		dataPoints: this.data.dataPoints
+	  }]
+	}
 }
