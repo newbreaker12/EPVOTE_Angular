@@ -1,9 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog'; // Correct import for MatDialog
 import { ToastrService } from 'ngx-toastr';
 import { ApiclientService } from 'src/app/apiclient.service';
 import { PieComponent } from '../pie/pie.component';
 import { Statistics } from 'src/app/models/statistics';
+
 
 @Component({
   selector: 'app-statistics',

@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { ToastrService } from 'ngx-toastr';
 import { ApiclientService } from 'src/app/apiclient.service';
 
@@ -21,12 +23,12 @@ constructor(public client : ApiclientService, private toastrService: ToastrServi
 ngOnInit() {
   this.dataSource.paginator = this.paginator;
   this.dataSource.sort = this.sort;
-  this.client.getUsers().subscribe(response => 
+  this.client.getUsers().subscribe(response =>
     {
       let data = response.data;
       this.dataSource.data = data;
       });
-    
+
 }
 
 public edit(id: string) {
@@ -38,7 +40,7 @@ public delete(id: string) {
     this.client.getUsers().subscribe(response => this.dataSource.data = response.data);
   }, error => {
     console.log(error);
-    this.toastrService.error(error.error.data); 
+    this.toastrService.error(error.error.data);
   });
 }
 

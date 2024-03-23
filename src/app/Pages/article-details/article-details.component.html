@@ -7,8 +7,8 @@
         <p>Description: </p>
         <p>{{this.article.description}}</p>
     </div>
-    
-    
+
+
       <p>Session: {{this.article.session.from}} - {{this.article.session.to}}</p>
 
 </div>
@@ -16,7 +16,11 @@
 <button (click)="this.edit(this.articleId)">Edit</button>
 <button (click)="this.addSubArticle()">Add subarticle</button>
 
-<mat-paginator [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>
+<mat-paginator  pageSizeOptions]="[10, 25, 50]"
+                showFirstLastButtons>
+</mat-paginator>
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+
 
 <table style="width: 100%;" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
@@ -45,7 +49,7 @@
     </td>
   </ng-container>
 
-  
+
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>

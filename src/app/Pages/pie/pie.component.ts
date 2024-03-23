@@ -1,5 +1,6 @@
-import { MAT_DIALOG_DATA } from '@angular/material';
 import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog'; // Correct import for MAT_DIALOG_DATA
+
 
 
 @Component({

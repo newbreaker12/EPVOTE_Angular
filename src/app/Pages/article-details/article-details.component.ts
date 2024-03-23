@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-//import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
+import { MatSort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
 import { ApiclientService } from 'src/app/apiclient.service';
 import { CreateSubarticleComponent } from '../create-subarticle/create-subarticle.component';
@@ -59,7 +61,7 @@ export class ArticleDetailsComponent implements OnInit {
     }
   }
 
-  public edit(id: string) {
+  public edit(id: number) {
     window.open("/article/edit/" + id, "_self");
   }
   public createSession(id: string) {

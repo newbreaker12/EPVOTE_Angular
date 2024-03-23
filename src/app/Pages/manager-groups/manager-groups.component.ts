@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { ToastrService } from 'ngx-toastr';
 import { ApiclientService } from 'src/app/apiclient.service';
 
@@ -9,7 +11,7 @@ import { ApiclientService } from 'src/app/apiclient.service';
   styleUrls: ['./manager-groups.component.css']
 })
 export class ManagerGroupsComponent implements OnInit {
-  
+
   groups = []
   displayedColumns = ["name","readableId","createdAt","edit","delete"]
   dataSource = new MatTableDataSource<any>();
@@ -30,12 +32,12 @@ export class ManagerGroupsComponent implements OnInit {
   public delete(id: string) {
     this.client.deleteGroup(id).subscribe(response => {
       if(response.data.status !== 200) {
-        this.toastrService.error(response.data); 
+        this.toastrService.error(response.data);
       } else {
         this.client.getGroups().subscribe(response => this.dataSource.data = response.data);
       }
     }, error => {
-      this.toastrService.error(error.error.data); 
+      this.toastrService.error(error.error.data);
     }
     );
   }
