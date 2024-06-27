@@ -1,5 +1,5 @@
 <mat-card>
-  <a href="/article/create"><button type="button" class="btn btn-primary">Create</button></a>
+  <a class="margin-v-10" href="/article/create"><button type="button" class="btn btn-primary">Create Session</button></a>
 </mat-card>
 
 <mat-paginator [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>
@@ -29,13 +29,13 @@
   <ng-container matColumnDef="edit">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>edit</th>
     <td mat-cell *matCellDef="let item">
-      <button (click)="this.edit(item.id)">edit</button>
+      <button class="btn btn-secondary" (click)="this.edit(item.id)">edit</button>
     </td>
   </ng-container>
   <ng-container matColumnDef="session">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Session</th>
     <td mat-cell *matCellDef="let item">
-      <button (click)="this.createSession(item.id)">create</button>
+      <button class="btn btn-primary" (click)="this.createSession(item.id)">create</button>
     </td>
   </ng-container>
 

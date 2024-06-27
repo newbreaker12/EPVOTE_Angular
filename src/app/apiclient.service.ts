@@ -74,10 +74,10 @@ export class ApiclientService {
   public authenticate(username : string, password : string) : Observable<any>{
     return this.http.get("https://localhost:44396/users/login", {
       headers: new HttpHeaders ({'Authorization': username+':'+password})})
-    }
-    public getUserByEmail() : Observable<any>{
-      return this.http.get("https://localhost:44396/users/email", {})
-      }
+  }
+  public getUserByEmail() : Observable<any>{
+    return this.http.get("https://localhost:44396/users/email", {})
+  }
 
 
   public editGroup(group) : Observable<any> {

@@ -9,16 +9,13 @@
     </div>
 
 
-      <p>Session: {{this.article.session.from}} - {{this.article.session.to}}</p>
+      <p>Session: {{this.article?.session?.from}} - {{this.article?.session?.to}}</p>
 
 </div>
 
 <button (click)="this.edit(this.articleId)">Edit</button>
 <button (click)="this.addSubArticle()">Add subarticle</button>
 
-<mat-paginator  pageSizeOptions]="[10, 25, 50]"
-                showFirstLastButtons>
-</mat-paginator>
 <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
 
 

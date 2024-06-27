@@ -1,6 +1,6 @@
 
 <mat-card>
-<a href="/groups/create"><button type="button" class="btn btn-primary">Create new group</button></a>
+<a class="margin-v-10" href="/groups/create"><button type="button" class="btn btn-primary">Create New Group</button></a>
 </mat-card>
 <mat-paginator [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>
 
@@ -12,7 +12,7 @@
   </ng-container>
   <ng-container matColumnDef="readableId">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>readable Id</th>
-    <td mat-cell *matCellDef="let item">{{item.readableId}}</td>
+    <td mat-cell *matCellDef="let item">{{item.readableId }}</td>
   </ng-container>
   <ng-container matColumnDef="createdAt">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>created At</th>

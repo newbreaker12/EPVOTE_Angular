@@ -6,19 +6,20 @@ export class TokenInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if (!request.headers.has("Authorization") && !request.url.includes("googleapis")) {
-            request = request.clone({
-                setHeaders: {
-                    Authorization: `Bearer ${localStorage.getItem("username")+':'+localStorage.getItem("password")}`
-                }
-            });
+          if (!localStorage.getItem("username")) {
+            location.href = '/login';
+          }
+          request = request.clone({
+              setHeaders: {
+                  Authorization: `${localStorage.getItem("username")+':'+localStorage.getItem("password")}`
+              }
+          });
         }
 
         return next.handle(request).pipe(tap(
             (event: HttpEvent<any>) => event instanceof HttpResponse,
             (error: HttpErrorResponse) => {
                 if (error.status === 401) {
-                  localStorage.clear();
-                  location.href = '/login';
                 }7
             }
         ));
