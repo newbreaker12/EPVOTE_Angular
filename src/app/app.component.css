@@ -1,0 +1,9 @@
+.btn-outline-light {
+  border-color: white;
+  color: white;
+}
+
+.btn-outline-light:hover {
+  background-color: white;
+  color: #007bff; /* or whatever color your primary background is */
+}

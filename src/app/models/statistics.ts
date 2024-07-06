@@ -4,7 +4,7 @@ export interface Statistics {
   articleName: string;
   groupName: string;
   voteCount: number;
-  voteInFavourCount: number;
-  voteNotInFavourCount: number;
-  voteNeutralCount: number;
+  inFavorCount: number;
+  notInFavorCount: number;
+  neutralCount: number;
 }

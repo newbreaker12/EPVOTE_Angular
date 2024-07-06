@@ -1,0 +1,14 @@
+.paginator-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 16px 0 0 5px; /* 16px margin at the top, 0 at the bottom, 5px on the left */
+}
+
+mat-form-field {
+  margin-right: 16px;
+}
+
+.custom-table {
+  margin: 0 20px 0 20px; /* 0 at the top and bottom, 5px on the left and right */
+}

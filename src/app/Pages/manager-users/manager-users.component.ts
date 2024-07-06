@@ -13,7 +13,7 @@ import { ApiclientService } from 'src/app/apiclient.service';
 export class ManagerUsersComponent implements OnInit {
 
 users = []
-displayedColumns = ["id","email","firstName","lastName","groups","roles","isMEP","edit","delete"]
+displayedColumns = ["email","firstName","lastName","groups","roles","edit","delete"]
 dataSource = new MatTableDataSource<any>();
 @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 @ViewChild(MatSort, { static: true }) sort: MatSort;

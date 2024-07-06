@@ -1,33 +1,48 @@
-<nav *ngIf="loggedIn()" class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav *ngIf="loggedIn()" class="navbar navbar-expand bg-primary">
   <a class="navbar-brand" href="#">
     <img src="./assets/eplogo.png" style="height: 40px;">
   </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#">
+          <span class="material-icons align-middle">dashboard</span> Dashboard <span class="sr-only">(current)</span>
+        </a>
       </li>
       <li *ngIf="role === 'ADMIN'" class="nav-item">
-        <a class="nav-link" href="/users">User Manager</a>
+        <a class="nav-link" href="/users">
+          <span class="material-icons align-middle">manage_accounts</span> User Manager
+        </a>
       </li>
       <li *ngIf="role === 'ADMIN'" class="nav-item">
-        <a class="nav-link" href="/groups">Groups</a>
+        <a class="nav-link" href="/groups">
+          <span class="material-icons align-middle">group</span> Groups
+        </a>
       </li>
       <li *ngIf="role === 'ADMIN'" class="nav-item">
-        <a class="nav-link" href="/history">Voting History</a>
+        <a class="nav-link" href="/history">
+          <span class="material-icons align-middle">history</span> Voting History
+        </a>
       </li>
       <li *ngIf="role === 'ADMIN'" class="nav-item">
-        <a class="nav-link" href="/statistics">Statistics</a>
+        <a class="nav-link" href="/statistics">
+          <span class="material-icons align-middle">bar_chart</span> Statistics
+        </a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <p class="navbar-brand">{{this.email}}</p>
-      <button class="btn btn-outline-error my-2 my-sm-0" type="submit" (click)="this.logout()">logout</button>
-    </form>
+    <div class="d-flex align-items-center">
+      <span class="navbar-text me-2 admin-text">{{this.email}}</span>
+      <button class="btn btn-outline-light my-2 my-sm-0" type="button" (click)="this.logout()">
+        <span class="material-icons align-middle">logout</span> logout
+      </button>
+    </div>
   </div>
 </nav>
+
+
+
 <router-outlet></router-outlet>
