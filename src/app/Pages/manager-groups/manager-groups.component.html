@@ -1,8 +1,12 @@
 
-<mat-card>
-<a class="margin-v-10" href="/groups/create"><button type="button" class="btn btn-primary">Create New Group</button></a>
-</mat-card>
-<mat-paginator [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>
+
+<mat-toolbar>
+  <a class="margin-v-15" href="/groups/create">
+    <button type="button" class="btn btn-primary">Create New Group</button>
+  </a>
+  <mat-paginator [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>
+</mat-toolbar>
+
 
 <table style="width: 100%;" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 

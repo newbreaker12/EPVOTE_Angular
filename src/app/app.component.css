@@ -7,3 +7,22 @@
   background-color: white;
   color: #007bff; /* or whatever color your primary background is */
 }
+
+/* Define the keyframes for the rotation animation */
+@keyframes icon-rotate-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Apply the animation to the icons on hover */
+.nav-item .material-icons {
+  transition: transform 0.3s ease-in-out;
+}
+
+.nav-item:hover .material-icons {
+  animation: icon-rotate-animation 0.6s ease-in-out;
+}

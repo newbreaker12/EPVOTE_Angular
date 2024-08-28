@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { range } from 'rxjs';
 import { ApiclientService } from 'src/app/apiclient.service';
 
 @Component({
@@ -12,33 +10,43 @@ import { ApiclientService } from 'src/app/apiclient.service';
 })
 export class CreateSessionComponent implements OnInit {
 
-  id = ''
-  articleId = "";
-  description = "";
-  name = "";
-  from = "";
-  to = "";
+  articleId: string = '';
+  description: string = '';
+  name: string = '';
+  from: string = '';
+  to: string = '';
 
-  constructor(public client : ApiclientService, 
+  constructor(
+    public client: ApiclientService,
     private readonly route: ActivatedRoute,
-    private toastrService: ToastrService) { }
+    private toastrService: ToastrService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
-    this.articleId = this.route.snapshot.paramMap.get("id");
-    
+    this.articleId = this.route.snapshot.paramMap.get('id');
   }
 
-  public createSession(){
-    const body = { name: this.name, description: this.description, articleId: Number(this.articleId), to: this.to, from: this.from }
+  public createSession() {
+    const body = {
+      name: this.name,
+      description: this.description,
+      articleId: Number(this.articleId),
+      to: this.to,
+      from: this.from
+    };
+
     this.client.createSession(body)
-    .subscribe(response =>{
-      if(response.data === 'ok') {
-        window.open("/", "_self");
-    } else {
-      this.toastrService.error(response.data); }
-  }, error => {
-      console.log(error);
-      this.toastrService.error(error.error.data); 
-    })
+      .subscribe(response => {
+        if (response.data === 'ok') {
+          this.toastrService.success('Session created successfully!');
+          this.router.navigate(['/']);
+        } else {
+          this.toastrService.error(response.data);
+        }
+      }, error => {
+        console.log(error);
+        this.toastrService.error('Unable to define a session period', 'Error');
+      });
   }
 }

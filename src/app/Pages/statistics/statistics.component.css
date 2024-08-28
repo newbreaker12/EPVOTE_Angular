@@ -12,3 +12,8 @@ mat-form-field {
 .custom-table {
   margin: 0 20px 0 20px; /* 0 at the top and bottom, 5px on the left and right */
 }
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  border-color: currentColor;
+  background-color: rgb(71, 130, 218, 0.1);
+}

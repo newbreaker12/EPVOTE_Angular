@@ -13,8 +13,9 @@ import { ApiclientService } from 'src/app/apiclient.service';
 export class ManagerUsersComponent implements OnInit {
 
 users = []
-displayedColumns = ["email","firstName","lastName","groups","roles","edit","delete"]
+displayedColumns = ["email","firstName","lastName","groups","roles","actions"]
 dataSource = new MatTableDataSource<any>();
+
 @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 @ViewChild(MatSort, { static: true }) sort: MatSort;
 
@@ -23,12 +24,12 @@ constructor(public client : ApiclientService, private toastrService: ToastrServi
 ngOnInit() {
   this.dataSource.paginator = this.paginator;
   this.dataSource.sort = this.sort;
-  this.client.getUsers().subscribe(response =>
-    {
-      let data = response.data;
-      this.dataSource.data = data;
-      });
-
+  this.client.getUsers().subscribe(response => {
+    let data = response.data;
+    this.dataSource.data = data;
+  }, error => {
+    this.toastrService.error('Failed to load users.', 'Error');
+  });
 }
 
 public edit(id: string) {
@@ -37,10 +38,24 @@ public edit(id: string) {
 
 public delete(id: string) {
   this.client.deleteUser(id).subscribe(response => {
-    this.client.getUsers().subscribe(response => this.dataSource.data = response.data);
+    this.toastrService.success('User deleted successfully!', 'Success');
+    this.client.getUsers().subscribe(response => {
+      this.dataSource.data = response.data;
+    });
   }, error => {
-    console.log(error);
-    this.toastrService.error(error.error.data);
+    console.log('Error response:', error); // Log the entire error response
+    let errorMessage = 'Failed to delete user. Please try again later.';
+
+    // Access different properties based on the error structure
+    if (error.error) {
+      if (error.error.message) {
+        errorMessage = error.error.message;
+      } else if (error.error.data && typeof error.error.data === 'string') {
+        errorMessage = error.error.data;
+      }
+    }
+
+    this.toastrService.error(errorMessage, 'Error');
   });
 }
 

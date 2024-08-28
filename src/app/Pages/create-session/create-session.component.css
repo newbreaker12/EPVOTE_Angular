@@ -1,7 +1,39 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    width: 700px;
-    margin: auto;
+/* Center the mat-card on the screen */
+.center-card {
+  max-width: 800px;
+  margin: auto;
+  margin-top: 20px; /* Adjusted margin to account for the header */
+  padding: 20px;
+}
+
+/* Flexbox styling for form group */
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Ensure h3 elements align with mat-label */
+.form-group h3 {
+  flex: 0 0 150px; /* Adjust the width as needed */
+  margin: 0;
+}
+
+/* Make mat-form-field take full width */
+.full-width {
+  flex: 1;
+}
+
+/* Flexbox styling for button group */
+.button-group {
+  display: flex;
+  justify-content: center; /* Center the button group */
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Center the header text */
+.center-text {
+  text-align: center;
+  margin-top: 50px; /* Adjust as needed for spacing */
 }

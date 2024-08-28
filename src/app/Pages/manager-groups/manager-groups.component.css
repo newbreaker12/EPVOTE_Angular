@@ -1,0 +1,4 @@
+.mat-mdc-row:hover .mat-mdc-cell {
+  border-color: currentColor;
+  background-color: rgb(71, 130, 218, 0.1);
+}

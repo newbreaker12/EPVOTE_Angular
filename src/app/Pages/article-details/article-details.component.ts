@@ -7,7 +7,6 @@ import { ActivatedRoute } from '@angular/router';
 import { ApiclientService } from 'src/app/apiclient.service';
 import { CreateSubarticleComponent } from '../create-subarticle/create-subarticle.component';
 
-
 @Component({
   selector: 'app-article-details',
   templateUrl: './article-details.component.html',
@@ -16,46 +15,46 @@ import { CreateSubarticleComponent } from '../create-subarticle/create-subarticl
 export class ArticleDetailsComponent implements OnInit {
 
   articleId = 0;
-  article: any
-  subArticles = []
-  displayedColumns = ["name","description","edit","delete"]
+  article: any;
+  subArticles = [];
+  displayedColumns = ["name", "description", "edit", "delete"];
   dataSource = new MatTableDataSource<any>();
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(
-    public client : ApiclientService,
+    public client: ApiclientService,
     private readonly route: ActivatedRoute,
     public dialog: MatDialog
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.articleId = Number(this.route.snapshot.paramMap.get("id"));
 
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    this.client.getArticle(this.articleId).subscribe(response => this.article = response.data);
-    this.client.getSubArticles(this.articleId).subscribe(response =>
-      {
-        this.subArticles = response.data;
-        this.dataSource.data = response.data;
-      });
+    this.client.getArticle(this.articleId).subscribe(response => {
+      this.article = response.data;
+      console.log('Article:', this.article); // Debugging: Check the structure of the article
+    });
+    this.client.getSubArticles(this.articleId).subscribe(response => {
+      this.subArticles = response.data;
+      this.dataSource.data = response.data;
+    });
   }
 
-  public getStatus(session){
-    if(session === null){
+  public getStatus(session) {
+    if (session === null) {
       return "Never voted";
     } else {
-      const from = new Date(session.from)
-      const to = new Date(session.to)
-      const now = new Date(new Date())
+      const from = new Date(session.from);
+      const to = new Date(session.to);
+      const now = new Date(new Date());
       if (from > now) {
         return "Not yet started";
-      }else if (from < now && to > now)
-      {
+      } else if (from < now && to > now) {
         return "Voting";
-      }else if(now > to )
-      {
+      } else if (now > to) {
         return "Voted";
       }
     }
@@ -67,8 +66,7 @@ export class ArticleDetailsComponent implements OnInit {
   public createSession(id: string) {
     window.open("/session/create/" + id, "_self");
   }
-  public addSubArticle (){
-
+  public addSubArticle() {
     const dialogRef = this.dialog.open(CreateSubarticleComponent, {
       width: '250px',
       data: {
@@ -80,15 +78,13 @@ export class ArticleDetailsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.client.getSubArticles(this.articleId).subscribe(response =>
-      {
+      this.client.getSubArticles(this.articleId).subscribe(response => {
         this.subArticles = response.data;
         this.dataSource.data = response.data;
       });
     });
   }
-  public editSubArticle (subArticle: any){
-
+  public editSubArticle(subArticle: any) {
     const dialogRef = this.dialog.open(CreateSubarticleComponent, {
       width: '250px',
       data: {
@@ -98,18 +94,15 @@ export class ArticleDetailsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.client.getSubArticles(this.articleId).subscribe(response =>
-      {
+      this.client.getSubArticles(this.articleId).subscribe(response => {
         this.subArticles = response.data;
         this.dataSource.data = response.data;
       });
     });
   }
-  public deleteSubArticle (subArticle: any){
-    this.client.deleteSubArticle(subArticle.id).subscribe(response =>
-    {
-      this.client.getSubArticles(this.articleId).subscribe(response =>
-      {
+  public deleteSubArticle(subArticle: any) {
+    this.client.deleteSubArticle(subArticle.id).subscribe(response => {
+      this.client.getSubArticles(this.articleId).subscribe(response => {
         this.subArticles = response.data;
         this.dataSource.data = response.data;
       });
@@ -117,4 +110,3 @@ export class ArticleDetailsComponent implements OnInit {
   }
 
 }
-

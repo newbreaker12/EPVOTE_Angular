@@ -33,14 +33,13 @@ export class LoginComponent implements OnInit {
             window.open("/", "_self");
               });
           } else {
+            this.toastrService.warning('Login failed');
             window.open("/login", "_self");
           }
         },
         error => {
-          this.toastrService.warning(error.error.data);
+          this.toastrService.warning('An error occurred during login');
         }
     );
+  }
 }
-
-}
-

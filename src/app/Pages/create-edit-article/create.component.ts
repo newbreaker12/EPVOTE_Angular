@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SharedService } from 'src/app/services/shared.service'; // Update the path
 import { ApiclientService } from 'src/app/apiclient.service';
 
 @Component({
@@ -9,50 +10,57 @@ import { ApiclientService } from 'src/app/apiclient.service';
 })
 export class CreateComponent implements OnInit {
 
-  id = ''
-  groupID = "";
-  description = "";
-  name = "";
+  id = '';
+  groupID = '';
+  description = '';
+  name = '';
 
   groups = [];
-  groupName = "Select P G";
+  groupName = 'Select P G';
 
-  constructor(public client : ApiclientService, 
-    private readonly route: ActivatedRoute) { }
+  constructor(
+    public client: ApiclientService,
+    private readonly route: ActivatedRoute,
+    private sharedService: SharedService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
-    this.id = this.route.snapshot.paramMap.get("id");
+    this.id = this.route.snapshot.paramMap.get('id');
     if (this.id) {
-      this.client.getArticle(this.id).subscribe(response => 
-        {
-          this.name = response.data.name,
-          this.groupID = response.data.groupID,
-          this.description = response.data.description
-          this.groupName = response.data.group.name
-        });
+      this.client.getArticle(this.id).subscribe(response => {
+        this.name = response.data.name;
+        this.groupID = response.data.groupID;
+        this.description = response.data.description;
+        this.groupName = response.data.group.name;
+      });
     }
-    this.getGroups()
+    this.getGroups();
   }
 
-  public getGroups(){
+  public getGroups() {
     this.client.getGroups().subscribe(response => this.groups = response.data);
   }
 
-  public createArticle(){
-    const body = { name: this.name, description: this.description, groupsId: this.groupID }
+  public createArticle() {
+    const body = { name: this.name, description: this.description, groupsId: this.groupID };
     this.client.createArticle(body)
-    .subscribe(response =>{
-      if(response.data === 'ok') {
-        window.open("/", "_self");
-    }})
-  }
-  public editArticle(){
-    const body = { id: Number(this.id), description: this.description }
-    this.client.editArticle(body)
-    .subscribe(response =>{
-      if(response.data === 'ok') {
-        window.open("/", "_self");
-    }})
+      .subscribe(response => {
+        if (response.data === 'ok') {
+          this.sharedService.setMessage(`Article "${this.name}" created successfully!`);
+          this.router.navigate(['/']); // Navigate to the dashboard
+        }
+      });
   }
 
+  public editArticle() {
+    const body = { id: Number(this.id), description: this.description };
+    this.client.editArticle(body)
+      .subscribe(response => {
+        if (response.data === 'ok') {
+          this.sharedService.setMessage(`Article "${this.name}" updated successfully!`);
+          this.router.navigate(['/']); // Navigate to the dashboard
+        }
+      });
+  }
 }

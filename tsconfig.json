@@ -21,5 +21,9 @@
   },
   "angularCompilerOptions": {
     "enableIvy": false
-  }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/environments/*.ts" // Ensure environment files are included
+  ]
 }

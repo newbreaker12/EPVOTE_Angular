@@ -1,0 +1,34 @@
+.mat-mdc-row:hover .mat-mdc-cell {
+  border-color: currentColor;
+  background-color: rgb(71, 130, 218, 0.1);
+}
+
+.action-btn + .action-btn {
+  margin-left: 5px;
+}
+
+.mat-column-status {
+  border-right: 1px solid #ddd;
+}
+
+.mat-column-actions {
+  min-width: 300px; /* Adjust the value as needed for the desired minimum width */
+  padding-left: 10px; /* Optional: Add some padding to the actions column */
+}
+
+.actions-cell .action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem; /* Optional: Adjust padding for better appearance */
+  margin-right: 10px; /* Adjust the value as needed for the desired distance */
+}
+
+.actions-cell .actions-buttons {
+  display: flex;
+  gap: 5px; /* Adjust the value as needed for the desired distance between buttons */
+}
+
+.actions-cell .action-btn svg {
+  fill: currentColor; /* Ensure the SVG icon matches the text color */
+}

@@ -1,26 +1,30 @@
 <div class="container" *ngIf="this.article">
+  <div class="details-container">
     <div class="item">
-        <p>Name: </p>
-        <p>{{this.article.name}}</p>
+      <p><strong>Name:</strong> {{this.article.name}}</p>
     </div>
     <div class="item">
-        <p>Description: </p>
-        <p>{{this.article.description}}</p>
+      <p><strong>Description:</strong> {{this.article.description}}</p>
     </div>
-
-
-      <p>Session: {{this.article?.session?.from}} - {{this.article?.session?.to}}</p>
-
+    <p>
+      <strong>Session:</strong>
+      <span *ngIf="this.article.session">
+        From {{this.article.session.from | date: 'short'}} to {{this.article.session.to | date: 'short'}}
+      </span>
+      <span *ngIf="!this.article.session">
+        Not available
+      </span>
+    </p>
+  </div>
+  <div class="button-container">
+    <button class="btn btn-secondary" (click)="this.edit(this.articleId)">Edit Article</button>
+    <button class="btn btn-primary" (click)="this.addSubArticle()">Add Subarticle</button>
+  </div>
 </div>
-
-<button (click)="this.edit(this.articleId)">Edit</button>
-<button (click)="this.addSubArticle()">Add subarticle</button>
 
 <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
 
-
 <table style="width: 100%;" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
     <td mat-cell *matCellDef="let item">{{item.name}}</td>
@@ -34,19 +38,17 @@
     <td mat-cell *matCellDef="let item">{{item.createdAt}}</td>
   </ng-container>
   <ng-container matColumnDef="edit">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>edit</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Edit</th>
     <td mat-cell *matCellDef="let item">
       <button (click)="this.editSubArticle(item)">edit</button>
     </td>
   </ng-container>
   <ng-container matColumnDef="delete">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>delete</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete</th>
     <td mat-cell *matCellDef="let item">
       <button (click)="this.deleteSubArticle(item)">delete</button>
     </td>
   </ng-container>
-
-
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
