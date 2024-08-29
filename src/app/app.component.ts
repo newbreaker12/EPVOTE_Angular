@@ -15,15 +15,15 @@ export class AppComponent {
   constructor(
       private authService: AuthService
   ) {
-    this.email = localStorage.getItem('username');
-    this.role = localStorage.getItem('roles');
+    this.email = this.authService.getJWT().email;
+    this.role = this.authService.getJWT().role;
+    console.log(this.role);
   }
 
   public logout(){
     this.authService.navigateToLoginPage();
   }
   public loggedIn() {
-    return localStorage.getItem('username') &&
-    localStorage.getItem('password');
+    return this.authService.isAuthenticated();
   }
 }

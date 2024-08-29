@@ -25,9 +25,8 @@ export class TokenInterceptor implements HttpInterceptor {
     ) {
       const userToken = this.authService.getStoredAccessToken();
       request = request.clone({
-        headers: request.headers.set('Authorization', `${userToken}`),
+        headers: request.headers.set('Authorization', `Bearer ${userToken}`),
       });
-      console.log('request', userToken);
     }
     return next.handle(request).pipe(
         catchError((error) => {
