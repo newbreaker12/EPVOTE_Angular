@@ -93,16 +93,11 @@ export class ApiclientService {
   }
 
   public authenticate(username: string, password: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/users/login`, { email: username, password: password });
+    return this.http.post(`${this.baseUrl}/users/login`, { email: username, password });
   }
 
   public getUserByEmail(): Observable<any> {
-    const token = localStorage.getItem('token');
-    return this.http.get(`${this.baseUrl}/users/email`, {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${token}`
-      })
-    });
+    return this.http.get(`${this.baseUrl}/users/email`);
   }
 
   public editGroup(group): Observable<any> {

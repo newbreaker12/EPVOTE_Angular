@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ApiclientService } from 'src/app/apiclient.service';
+import {LOCAL_STORAGE_SECURITY_ACCESS_TOKEN, LOCAL_STORAGE_USER_DATA} from '../../services/constant';
+import {AuthService} from '../../services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,33 +13,25 @@ import { ApiclientService } from 'src/app/apiclient.service';
 export class LoginComponent implements OnInit {
 
   constructor(
-    public client : ApiclientService,
+  private router: Router,
+    public service : ApiclientService,
+    public authService : AuthService,
     public toastrService: ToastrService
     ) { }
 
-  username = "";
-  password = "";
+  username = 'admin';
+  password = 'pss';
 
   ngOnInit() {
   }
 
   public onClickLogin() {
-    this.client.authenticate(this.username, this.password).subscribe(
-        result => {
-          if (result.data === 'ok'){
-            localStorage.setItem('username', this.username);
-            localStorage.setItem('password', this.password);
-            this.client.getUserByEmail().subscribe(
-              result2 => {
-                localStorage.setItem('firstName', result2.data.firstName);
-                localStorage.setItem('roles', result2.data.role.name);
-            window.open("/", "_self");
-              });
-          } else {
-            this.toastrService.warning('Login failed');
-            window.open("/login", "_self");
-          }
-        },
+    this.authService.getAccessToken(this.username, this.password).subscribe(
+        response => {
+            localStorage.setItem(LOCAL_STORAGE_SECURITY_ACCESS_TOKEN, response.token);
+            localStorage.setItem(LOCAL_STORAGE_USER_DATA, JSON.stringify(this.authService.getJWT(response.token)));
+            this.router.navigate(['/home']);
+            },
         error => {
           this.toastrService.warning('An error occurred during login');
         }

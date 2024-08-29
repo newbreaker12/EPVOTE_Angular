@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AuthService} from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -11,17 +12,15 @@ export class AppComponent {
   email = ''
   role= ''
 
-  constructor() {
-    this.email = localStorage.getItem("username");
-    this.role = localStorage.getItem("roles");
+  constructor(
+      private authService: AuthService
+  ) {
+    this.email = localStorage.getItem('username');
+    this.role = localStorage.getItem('roles');
   }
 
   public logout(){
-    localStorage.removeItem('username');
-    localStorage.removeItem('password');
-    localStorage.removeItem('firstName');
-    localStorage.removeItem('roles');
-    window.open("/login", "_self");
+    this.authService.navigateToLoginPage();
   }
   public loggedIn() {
     return localStorage.getItem('username') &&
