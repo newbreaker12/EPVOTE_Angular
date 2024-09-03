@@ -10,38 +10,37 @@ import { ApiclientService } from 'src/app/apiclient.service';
 })
 export class ManagerUsersCreateComponent implements OnInit {
 
-  id=""
-  email=""
-  firstName=""
-  lastName=""
-  password=""
-  isMEP=""
+  id=''
+  email=''
+  phoneNumber=''
+  firstName=''
+  lastName=''
+  password=''
 
   groups = [];
   roles = [];
-  groupId= "";
-  roleId = "";
-  groupName = "";
-  roleName = "";
+  groupId= '';
+  roleId = '';
+  groupName = '';
+  roleName = '';
 
-  constructor(public client : ApiclientService, 
+  constructor(public client : ApiclientService,
     private readonly route: ActivatedRoute,
     private toastrService: ToastrService
     ) { }
 
   ngOnInit() {
-    this.id = this.route.snapshot.paramMap.get("id");
+    this.id = this.route.snapshot.paramMap.get('id');
     if (this.id) {
-      this.client.getUser(this.id).subscribe(response => 
+      this.client.getUser(this.id).subscribe(response =>
         {
           this.email = response.data.email,
           this.firstName = response.data.firstName,
           this.lastName = response.data.lastName,
           this.password = response.data.password,
-          this.isMEP = response.data.isMEP,
           this.roleId = response.data.roleId,
-          this.groupId = response.data.groupId
-          
+          this.groupId = response.data.groupId,
+            this.phoneNumber = response.data.phoneNumber
         });
     }
     this.getGroups()
@@ -56,28 +55,42 @@ export class ManagerUsersCreateComponent implements OnInit {
   }
 
   public create(){
-    const body = { firstName: this.firstName, lastName: this.lastName, email: this.email, 
-    password: this.password, isMEP: Boolean(this.isMEP), roleId: this.roleId, groupId: this.groupId}
+
+    if (!this.email || !this.firstName || !this.lastName || !this.password || !this.roleId || !this.groupId) {
+      this.toastrService.error('All fields are required');
+      return;
+    }
+
+    const body = { firstName: this.firstName, lastName: this.lastName, email: this.email,
+      phoneNumber: this.phoneNumber,
+    password: this.password, roleId: this.roleId, groupId: this.groupId}
     this.client.createUser(body)
     .subscribe(response =>{
       if(response.data === 'ok') {
-        window.open("/users", "_self");
+        window.open('/users', '_self');
     } else {
-      this.toastrService.error(response.data); 
+      this.toastrService.error(response.data);
     }
   }, error => {
       this.toastrService.error(error.error.data);
     })
   }
   public edit(){
-    const body = { id: Number(this.id), firstName: this.firstName, lastName: this.lastName, email: this.email, 
-      password: this.password, isMEP: Boolean(this.isMEP), roleId: this.roleId, groupId: this.groupId}
+    if (!this.email || !this.firstName || !this.lastName || !this.password || !this.roleId || !this.groupId) {
+      this.toastrService.error('All fields are required');
+      return;
+    }
+
+    const body = {
+      id: Number(this.id), firstName: this.firstName, lastName: this.lastName, email: this.email,
+      phoneNumber: this.phoneNumber,
+      password: this.password, roleId: this.roleId, groupId: this.groupId}
     this.client.editUser(body)
     .subscribe(response =>{
       if(response.data === 'ok') {
-        window.open("/users", "_self");
+        window.open('/users', '_self');
     } else {
-      this.toastrService.error(response.data); 
+      this.toastrService.error(response.data);
     }}, error => {
       this.toastrService.error(error.error.data);
     })
