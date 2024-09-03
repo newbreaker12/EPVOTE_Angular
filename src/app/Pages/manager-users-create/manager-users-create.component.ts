@@ -66,8 +66,7 @@ export class ManagerUsersCreateComponent implements OnInit {
       this.toastrService.error(response.data); 
     }
   }, error => {
-      console.log(error);
-      this.toastrService.error(error.error.data); 
+      this.toastrService.error(error.error.data);
     })
   }
   public edit(){
@@ -80,8 +79,7 @@ export class ManagerUsersCreateComponent implements OnInit {
     } else {
       this.toastrService.error(response.data); 
     }}, error => {
-      console.log(error);
-      this.toastrService.error(error.error.data); 
+      this.toastrService.error(error.error.data);
     })
   }
 

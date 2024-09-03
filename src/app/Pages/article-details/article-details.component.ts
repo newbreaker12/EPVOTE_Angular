@@ -35,7 +35,6 @@ export class ArticleDetailsComponent implements OnInit {
     this.dataSource.sort = this.sort;
     this.client.getArticle(this.articleId).subscribe(response => {
       this.article = response.data;
-      console.log('Article:', this.article); // Debugging: Check the structure of the article
     });
     this.client.getSubArticles(this.articleId).subscribe(response => {
       this.subArticles = response.data;

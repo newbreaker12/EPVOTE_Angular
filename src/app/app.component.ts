@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {AuthService} from './services/auth.service';
+import {ApiclientService} from './apiclient.service';
 
 @Component({
   selector: 'app-root',
@@ -13,11 +14,11 @@ export class AppComponent {
   role= ''
 
   constructor(
-      private authService: AuthService
+      private authService: AuthService,
+      private apiclientService: ApiclientService
   ) {
-    this.email = this.authService.getJWT().email;
-    this.role = this.authService.getJWT().role;
-    console.log(this.role);
+    this.email = this.authService.getJWT()?.email;
+    this.role = this.authService.getJWT()?.role;
   }
 
   public logout(){
@@ -25,5 +26,14 @@ export class AppComponent {
   }
   public loggedIn() {
     return this.authService.isAuthenticated();
+  }
+
+  public getPinCode() {
+    return this.apiclientService.getPinCode().subscribe(
+        response => {
+        },
+        error => {
+        }
+    )
   }
 }

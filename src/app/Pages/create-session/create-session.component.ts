@@ -45,7 +45,6 @@ export class CreateSessionComponent implements OnInit {
           this.toastrService.error(response.data);
         }
       }, error => {
-        console.log(error);
         this.toastrService.error('Unable to define a session period', 'Error');
       });
   }

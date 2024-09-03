@@ -43,7 +43,6 @@ public delete(id: string) {
       this.dataSource.data = response.data;
     });
   }, error => {
-    console.log('Error response:', error); // Log the entire error response
     let errorMessage = 'Failed to delete user. Please try again later.';
 
     // Access different properties based on the error structure

@@ -111,4 +111,8 @@ export class ApiclientService {
   public deleteGroup(id: string): Observable<any> {
     return this.http.delete<any>(`${this.baseUrl}/groups/` + id, {});
   }
+
+  getPinCode() {
+    return this.http.get(`${this.baseUrl}/users/pincode`);
+  }
 }
