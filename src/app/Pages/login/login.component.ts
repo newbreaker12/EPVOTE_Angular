@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     ) { }
 
   username = 'admin';
-  password = 'pss';
+  password = 'pass';
 
   ngOnInit() {
   }

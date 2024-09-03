@@ -1,8 +1,7 @@
-export interface Statistics {
-  sessionName: string;
+export class Statistics {
   subArticleName: string;
   articleName: string;
-  groupName: string;
+  groupName?: string;
   voteCount: number;
   inFavorCount: number;
   notInFavorCount: number;

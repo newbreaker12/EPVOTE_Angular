@@ -18,9 +18,13 @@ export class StatisticsComponent implements OnInit {
   selectedValue = 'all';
   groups: string[];
 
-  displayedColumns = ["articleName", "subArticleName", "voteInFavourCount", "voteNotInFavourCount", "voteNeutralCount"];
+  displayedColumns = ['subArticleName', 'articleName', 'voteInFavourCount', 'voteNotInFavourCount', 'voteNeutralCount'];
+  displayedColumnsTotals = ['articleName', 'voteInFavourCount', 'voteNotInFavourCount', 'voteNeutralCount'];
   dataSource = new MatTableDataSource<Statistics>();
   data: Statistics[];
+
+  dataSourceTotals = new MatTableDataSource<Statistics>();
+  dataTotals: Statistics[] = [];
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -38,6 +42,26 @@ export class StatisticsComponent implements OnInit {
       this.data = response.data;
       this.dataSource.data = this.data;
       this.groups = this.data.map(i => i.groupName).filter(this.onlyUnique);
+      const articles = this.data.map(i => i.articleName).filter(this.onlyUnique);
+
+      if (this.data && this.data.length > 0) {
+        articles.forEach(article => {
+          const subArticle = this.data.filter(i => i.articleName === article);
+          const inFavor = subArticle.reduce((acc, val) => acc + val.inFavorCount, 0);
+          const notInFavor = subArticle.reduce((acc, val) => acc + val.notInFavorCount, 0);
+          const neutral = subArticle.reduce((acc, val) => acc + val.neutralCount, 0);
+          const total = inFavor + notInFavor + neutral;
+          this.dataTotals.push({
+            subArticleName: '',
+            articleName: article,
+            voteCount: total,
+            inFavorCount: inFavor,
+            notInFavorCount: notInFavor,
+            neutralCount: neutral
+          } as Statistics);
+        });
+      }
+        this.dataSourceTotals.data = this.dataTotals;
     });
   }
 
@@ -57,13 +81,18 @@ export class StatisticsComponent implements OnInit {
     this.dialog.open(PieComponent, {
       data: {
         title: s.subArticleName,
-        total: s.voteCount,
+        total: this.getTotalVotes(s),
         dataPoints: [
-          { name: 'In Favour', y: s.inFavorCount / s.voteCount * 100 },
-          { name: 'Neutral', y: s.neutralCount / s.voteCount * 100 },
-          { name: 'Not In Favour', y: s.notInFavorCount / s.voteCount * 100 }
+          { name: 'In Favour', y: s.inFavorCount / this.getTotalVotes(s) * 100 },
+          { name: 'Neutral', y: s.neutralCount / this.getTotalVotes(s) * 100 },
+          { name: 'Not In Favour', y: s.notInFavorCount / this.getTotalVotes(s) * 100 }
         ]
       }
     });
   }
+
+  getTotalVotes(s: Statistics): number {
+    return s.inFavorCount + s.notInFavorCount + s.neutralCount;
+  }
+
 }
