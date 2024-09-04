@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/home']);
             },
         error => {
-          this.toastrService.warning('An error occurred during login');
+          this.toastrService.warning('Wrong username or password');
         }
     );
   }
