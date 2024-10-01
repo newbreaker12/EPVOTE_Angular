@@ -1,48 +1,81 @@
-<div class="container">
-    <h1> New user creation: </h1>
+<h1 class="center-text">New User Creation</h1>
 
-    <h3>Political group:</h3>
-    <div class="dropdown">
-        <button class="dropbtn">{{this.groupName === "" ? "Select" : this.groupName}}</button>
-        <div class="dropdown-content">
-            <a *ngFor="let item of groups" (click)="this.groupId = item.id; groupName = item.readableId">{{item.readableId}}</a>
-        </div>
-    </div>
-    <h3>Role:</h3>
-    <div class="dropdown">
-        <button class="dropbtn">{{this.roleName === "" ? "Select" : this.roleName}}</button>
-        <div class="dropdown-content">
-            <a *ngFor="let item of roles" (click)="this.roleId = item.id; roleName = item.name">{{item.name}}</a>
-        </div>
+<mat-card class="center-card">
+  <mat-card-content>
+    <div class="form-group">
+      <h3>Political Group:</h3>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Political Group</mat-label>
+        <mat-select [(value)]="groupName">
+          <mat-option *ngFor="let item of groups" [value]="item.readableId" (click)="this.groupId = item.id; groupName = item.readableId">
+            {{item.readableId}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
 
-
-    <h3>First Name:</h3>
-    <input type="text" name="firstName" [(ngModel)]="firstName">
-    <br />
-    <h3>Last Name:</h3>
-    <input type="text" name="lastName" [(ngModel)]="lastName">
-    <br />
-    <h3>Email</h3>
-    <input type="text" name="email" [(ngModel)]="email">
-    <br />
-    <h3>Phone Number</h3>
-    <input type="text" name="phoneNumber" [(ngModel)]="phoneNumber">
-    <br />
-    <h3>Password:</h3>
-    <input type="text" name="password" [(ngModel)]="password">
-    <br />
-    <!-- <h3>Is he a MEP?</h3>
-    <div class="dropdown">
-        <button class="dropbtn">Select</button>
-        <div class="dropdown-content">
-            <a (click)="this.isMEP = true">Yes</a>
-            <a (click)="this.isMEP = false">No</a>
-        </div>
-    </div> -->
-    <div>
-        <a class="a-clickable" *ngIf="!this.id" (click)="this.create()" class="btn btn-success">Create</a>
-        <a class="a-clickable" *ngIf="this.id" (click)="this.edit()" class="btn btn-secondary">Update</a>
-        <a href="/" class="btn btn-warning">Cancel</a>
+    <div class="form-group">
+      <h3>Role:</h3>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Role</mat-label>
+        <mat-select [(value)]="roleName">
+          <mat-option *ngFor="let item of roles" [value]="item.name" (click)="this.roleId = item.id; roleName = item.name">
+            {{item.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
-</div>
+
+    <div class="form-group">
+      <h3>First Name:</h3>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>First Name</mat-label>
+        <input matInput type="text" name="firstName" [(ngModel)]="firstName">
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <h3>Last Name:</h3>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Last Name</mat-label>
+        <input matInput type="text" name="lastName" [(ngModel)]="lastName">
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <h3>Email:</h3>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" name="email" [(ngModel)]="email">
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <h3>Phone Number:</h3>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Phone Number</mat-label>
+        <input matInput type="text" name="phoneNumber" [(ngModel)]="phoneNumber">
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <h3>Password:</h3>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" name="password" [(ngModel)]="password">
+      </mat-form-field>
+    </div>
+
+    <div class="button-group">
+      <button mat-raised-button color="primary" *ngIf="!this.id" (click)="create()">
+        <mat-icon>add</mat-icon> Create
+      </button>
+      <button mat-raised-button color="accent" *ngIf="this.id" (click)="edit()">
+        <mat-icon>edit</mat-icon> Update
+      </button>
+      <a href="/users" class="btn btn-warning">
+        <mat-icon>cancel</mat-icon> Cancel
+      </a>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,11 +1,33 @@
-<div class="container">
-    <h3>Group Name:</h3>
-    <input type="text" name="name" [(ngModel)]="name">
-    <br />
-    <h3>Abbreviation:</h3>
-    <input type="text" name="readableId" [(ngModel)]="readableId">
-    <br />
-    <a class="a-clickable" *ngIf="!this.id" (click)="this.create()" class="btn btn-success">Create</a>
-    <a class="a-clickable" *ngIf="this.id" (click)="this.edit()" class="btn btn-secondary">Update</a>
-    <a href="/" class="btn btn-warning">Cancel</a>
-</div>
+<h1 class="center-text">Create or Update Group</h1>
+
+<mat-card class="center-card">
+  <mat-card-content>
+    <div class="form-group">
+      <h3>Group Name:</h3>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Group Name</mat-label>
+        <input matInput type="text" name="name" [(ngModel)]="name">
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <h3>Abbreviation:</h3>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Abbreviation</mat-label>
+        <input matInput type="text" name="readableId" [(ngModel)]="readableId">
+      </mat-form-field>
+    </div>
+
+    <div class="button-group">
+      <button mat-raised-button color="primary" *ngIf="!this.id" (click)="create()">
+        <mat-icon>add</mat-icon> Create
+      </button>
+      <button mat-raised-button color="accent" *ngIf="this.id" (click)="edit()">
+        <mat-icon>edit</mat-icon> Update
+      </button>
+      <a mat-raised-button color="warn" href="/groups">
+        <mat-icon>cancel</mat-icon> Cancel
+      </a>
+    </div>
+  </mat-card-content>
+</mat-card>

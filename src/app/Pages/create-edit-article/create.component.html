@@ -1,4 +1,4 @@
-<h1 class="center-text">Create new article</h1>
+<h1 class="center-text">{{ id ? 'Edit Article' : 'Create New Article' }}</h1>
 
 <mat-card class="center-card">
   <mat-card-content>
@@ -18,8 +18,7 @@
       <h3>Article Name:</h3>
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Article Name</mat-label>
-        <input matInput type="text" name="name" [(ngModel)]="name" *ngIf="!this.id">
-        <span *ngIf="this.id">{{name}}</span>
+        <input matInput type="text" name="name" [(ngModel)]="name">
       </mat-form-field>
     </div>
 

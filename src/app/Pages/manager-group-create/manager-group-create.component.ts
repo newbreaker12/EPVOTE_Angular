@@ -13,13 +13,13 @@ export class ManagerGroupCreateComponent implements OnInit {
   name = "";
   readableId = "";
 
-  constructor(public client : ApiclientService, 
+  constructor(public client : ApiclientService,
     private readonly route: ActivatedRoute) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get("id");
     if (this.id) {
-      this.client.getGroup(this.id).subscribe(response => 
+      this.client.getGroup(this.id).subscribe(response =>
         {
           this.name = response.data.name,
           this.readableId = response.data.readableId

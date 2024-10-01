@@ -31,11 +31,7 @@ export class ManagerGroupsComponent implements OnInit {
   }
   public delete(id: string) {
     this.client.deleteGroup(id).subscribe(response => {
-      if(response.data.status !== 200) {
-        this.toastrService.error(response.data);
-      } else {
-        this.client.getGroups().subscribe(response => this.dataSource.data = response.data);
-      }
+      this.client.getGroups().subscribe(response => this.dataSource.data = response.data);
     }, error => {
       this.toastrService.error(error.error.data);
     }
