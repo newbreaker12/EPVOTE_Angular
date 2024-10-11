@@ -20,7 +20,9 @@ export class StatisticsComponent implements OnInit {
 
   displayedColumns = ['subArticleName', 'articleName', 'voteInFavourCount', 'voteNotInFavourCount', 'voteNeutralCount'];
   displayedColumnsTotals = ['articleName', 'voteInFavourCount', 'voteNotInFavourCount', 'voteNeutralCount'];
+  displayedColumnsUsers = ['articleName', 'usersVoted']
   dataSource = new MatTableDataSource<Statistics>();
+  dataSourceUserStats = new MatTableDataSource<Statistics>();
   data: Statistics[];
 
   dataSourceTotals = new MatTableDataSource<Statistics>();
@@ -38,6 +40,10 @@ export class StatisticsComponent implements OnInit {
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.client.getUserStatistics().subscribe(response => {
+      this.dataSourceUserStats.data = response.data;
+    });
+
     this.client.getStatistics().subscribe(response => {
       this.data = response.data;
       this.dataSource.data = this.data;
@@ -57,7 +63,8 @@ export class StatisticsComponent implements OnInit {
             voteCount: total,
             inFavorCount: inFavor,
             notInFavorCount: notInFavor,
-            neutralCount: neutral
+            neutralCount: neutral,
+            voterCount: 0 // Placeholder for the number of users who voted
           } as Statistics);
         });
       }
@@ -77,15 +84,15 @@ export class StatisticsComponent implements OnInit {
     }
   }
 
-  clickRow(s: Statistics) {
+  clickRow(row: Statistics) {
     this.dialog.open(PieComponent, {
       data: {
-        title: s.subArticleName,
-        total: this.getTotalVotes(s),
+        title: row.subArticleName ? row.subArticleName : row.articleName, // Se c'è un subArticleName, usalo, altrimenti usa articleName
+        total: this.getTotalVotes(row),
         dataPoints: [
-          { name: 'In Favour', y: s.inFavorCount / this.getTotalVotes(s) * 100 },
-          { name: 'Neutral', y: s.neutralCount / this.getTotalVotes(s) * 100 },
-          { name: 'Not In Favour', y: s.notInFavorCount / this.getTotalVotes(s) * 100 }
+          { name: 'In Favour', y: row.inFavorCount / this.getTotalVotes(row) * 100 },
+          { name: 'Neutral', y: row.neutralCount / this.getTotalVotes(row) * 100 },
+          { name: 'Not In Favour', y: row.notInFavorCount / this.getTotalVotes(row) * 100 }
         ]
       }
     });
@@ -94,5 +101,6 @@ export class StatisticsComponent implements OnInit {
   getTotalVotes(s: Statistics): number {
     return s.inFavorCount + s.notInFavorCount + s.neutralCount;
   }
+
 
 }

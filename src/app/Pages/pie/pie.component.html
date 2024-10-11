@@ -1,3 +1,6 @@
-<canvasjs-chart [options]="chartOptions" [styles]="{width: '500px', height:'360px'}"></canvasjs-chart>
-
-<span>Total Votes: {{data.total}}</span>
+<div class="chart-container">
+  <canvasjs-chart [options]="chartOptions" [styles]="{width: '500px', height:'360px'}"></canvasjs-chart>
+  <p>Total Votes: {{ data.total }}</p> <!-- Totale voti -->
+  <p>Majority Vote: {{ getMajorityVote() }}</p> <!-- Maggioranza -->
+  <!--  <p>Number of Users Voted: {{ data.voterCount }}</p> Number of users who voted -->
+</div>

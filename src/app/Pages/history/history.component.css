@@ -1,4 +1,38 @@
 .mat-mdc-row:hover .mat-mdc-cell {
-  border-color: currentColor;
-  background-color: rgb(71, 130, 218, 0.1);
+  background: linear-gradient(to right, rgba(71, 130, 218, 0.1), rgba(71, 130, 218, 0.3));
+  border-color: rgba(71, 130, 218, 0.8);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Consolidato - Classe per mat-card */
+.info-card {
+  margin: 20px 0;
+  padding: 16px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mat-card-title {
+  font-size: 20px;
+  color: #1e88e5;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-family: 'Roboto', sans-serif; /* Font moderno */
+  font-size: 24px; /* Dimensione del testo maggiore */
+  color: #1e88e5; /* Colore blu accattivante */
+  font-weight: bold;
+  text-align: center; /* Centrare il titolo */
+  margin: 20px 0; /* Spaziatura superiore e inferiore */
+}
+
+p {
+  font-family: 'Open Sans', sans-serif; /* Font moderno e leggibile */
+  font-size: 18px;
+  color: #4a4a4a; /* Colore del testo */
+  line-height: 1.6; /* Aumenta la leggibilità */
+  margin: 20px 0; /* Spaziatura superiore e inferiore */
 }

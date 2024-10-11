@@ -28,7 +28,12 @@
   </ng-container>
   <ng-container matColumnDef="status">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-    <td mat-cell *matCellDef="let item" class="status-cell">{{getStatus(item.session)}}</td>
+    <td mat-cell *matCellDef="let item" class="status-cell">
+      <span [ngClass]="getStatusClass(item.lastSession)">
+        <mat-icon *ngIf="getStatusIcon(item.lastSession)" class="status-icon">{{ getStatusIcon(item.lastSession) }}</mat-icon>
+        {{ getStatus(item.lastSession) }}
+      </span>
+    </td>
   </ng-container>
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>

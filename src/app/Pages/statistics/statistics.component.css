@@ -1,19 +1,101 @@
-.paginator-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 16px 0 0 5px; /* 16px margin at the top, 0 at the bottom, 5px on the left */
-}
 
 mat-form-field {
   margin-right: 16px;
+  width: 100%;
+  max-width: 400px;
+}
+
+mat-label {
+  font-size: 16px;
+  color: #1e88e5;
+  margin-top: 2500px !important;
+}
+
+mat-select {
+  width: 100%;
+  min-width: 500px;
 }
 
 .custom-table {
-  margin: 0 20px 0 20px; /* 0 at the top and bottom, 5px on the left and right */
+  margin: 0 20px;
+  width: 100%;
 }
 
 .mat-mdc-row:hover .mat-mdc-cell {
-  border-color: currentColor;
-  background-color: rgb(71, 130, 218, 0.1);
+  background: linear-gradient(to right, rgba(71, 130, 218, 0.1), rgba(71, 130, 218, 0.3));
+  border-color: rgba(71, 130, 218, 0.8);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
+
+.title {
+  font-family: 'Roboto', sans-serif; /* Font moderno */
+  font-size: 24px;
+  color: #1e88e5;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px 0;
+}
+
+p {
+  font-family: 'Open Sans', sans-serif; /* Font moderno e leggibile */
+  font-size: 18px;
+  color: #4a4a4a; /* Colore del testo */
+  line-height: 1.6; /* Aumenta la leggibilità */
+  margin: 20px 0; /* Spaziatura superiore e inferiore */
+}
+
+/* Consolidato - Classe per mat-card */
+.info-card {
+  margin: 20px 0;
+  padding: 16px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mat-card-title {
+  font-size: 20px;
+  color: #1e88e5;
+  margin-bottom: 10px;
+}
+
+/* Tabella custom - stile unificato */
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+/* Stile delle icone */
+.mat-icon {
+  vertical-align: middle;
+  font-size: 20px;
+  color: #1e88e5;
+}
+
+/* Stile della toolbar */
+.mat-toolbar {
+  justify-content: space-between;
+}
+
+/* Media query per migliorare il layout su dispositivi più piccoli */
+@media (max-width: 768px) {
+  .paginator-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  mat-form-field {
+    width: 100%; /* Larghezza completa su dispositivi mobili */
+    margin-right: 0;
+  }
+
+  .custom-table {
+    margin: 0 10px; /* Riduci i margini su schermi piccoli */
+  }
+}
+

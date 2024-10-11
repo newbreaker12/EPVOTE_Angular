@@ -84,6 +84,10 @@ export class ApiclientService {
     return this.http.get<any>(`${this.baseUrl}/subarticle/statistics`, {});
   }
 
+  public getUserStatistics(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/subarticle/statistics/users`, {});
+  }
+
   public createVote(): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/groups/create-vote`, {});
   }

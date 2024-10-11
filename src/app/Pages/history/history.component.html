@@ -1,23 +1,50 @@
+<mat-card class="info-card">
+  <mat-card-title>Total Votes for Each Article</mat-card-title>
+  <mat-card-content>
+    <p>
+      Below is a summary of the total votes for each article, displaying the counts of votes in favor, against, and neutral. Use the column headers to sort the data as needed.
+    </p>
 
-<mat-paginator [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>
+    <!-- Search input for free-text filtering -->
+    <mat-form-field appearance="standard" style="width: 100%;">
+      <mat-label>Search</mat-label>
+      <input matInput #searchInput (keyup)="applyFilter($event)" placeholder="Search articles">
+    </mat-form-field>
 
-<table style="width: 100%;" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <!-- Dropdown list for selecting an article -->
+    <mat-form-field appearance="standard" style="width: 100%;">
+      <mat-label>Select Article Name</mat-label>
+      <mat-select [(ngModel)]="selectedArticle" (selectionChange)="filterByArticle($event.value)">
+        <mat-option *ngFor="let article of uniqueArticles" [value]="article">{{ article }}</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <ng-container matColumnDef="articleName">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Article Name</th>
-    <td mat-cell *matCellDef="let item">{{item.articleName}}</td>
-  </ng-container>
-  <ng-container matColumnDef="subArticleName">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Sub Article Name</th>
-    <td mat-cell *matCellDef="let item">{{item.subArticleName}}
-    </td>
-  </ng-container>
-  <ng-container matColumnDef="voteType">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Vote Type</th>
-    <td mat-cell *matCellDef="let item">{{item.voteType}}
-    </td>
-  </ng-container>
+    <!-- Clear Button -->
+    <button mat-raised-button color="primary" (click)="clearFilters(searchInput)">Clear Filters</button>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+    <!-- Paginator -->
+    <mat-paginator [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>
+
+    <!-- Table -->
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 table-full-width">
+      <ng-container matColumnDef="articleName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Article Name</th>
+        <td mat-cell *matCellDef="let item">{{item.articleName}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="subArticleName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Sub Article Name</th>
+        <td mat-cell *matCellDef="let item">{{item.subArticleName}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="voteType">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Vote Type</th>
+        <td mat-cell *matCellDef="let item">{{item.voteType}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+  </mat-card-content>
+</mat-card>

@@ -1,34 +1,67 @@
+/* Add a subtle border and background color change on hover for table rows */
 .mat-mdc-row:hover .mat-mdc-cell {
-  border-color: currentColor;
-  background-color: rgb(71, 130, 218, 0.1);
+  border-color: currentColor; /* Use the current text color for the border */
+  background-color: rgb(71, 130, 218, 0.1); /* Light blue background on hover */
 }
 
+/* Add spacing between consecutive action buttons */
 .action-btn + .action-btn {
-  margin-left: 5px;
+  margin-left: 5px; /* 5px margin between adjacent action buttons */
 }
 
+/* Add a right border to the 'status' column */
 .mat-column-status {
-  border-right: 1px solid #ddd;
+  border-right: 1px solid #ddd; /* Light gray border separating the status column */
 }
 
+/* Ensure the actions column has a minimum width and some padding */
 .mat-column-actions {
-  min-width: 300px; /* Adjust the value as needed for the desired minimum width */
-  padding-left: 10px; /* Optional: Add some padding to the actions column */
+  min-width: 300px; /* Set minimum width to prevent content from shrinking too much */
+  padding-left: 10px; /* Add padding to the left of the actions column */
 }
 
+/* Style for individual action buttons within the actions column */
 .actions-cell .action-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem; /* Optional: Adjust padding for better appearance */
-  margin-right: 10px; /* Adjust the value as needed for the desired distance */
+  display: flex; /* Use flexbox for better alignment */
+  align-items: center; /* Vertically center content */
+  justify-content: center; /* Horizontally center content */
+  padding: 0.5rem; /* Add some padding around the button */
+  margin-right: 10px; /* Add space between buttons */
 }
 
+/* Style for the actions buttons container */
 .actions-cell .actions-buttons {
-  display: flex;
-  gap: 5px; /* Adjust the value as needed for the desired distance between buttons */
+  display: flex; /* Use flexbox to align buttons horizontally */
+  gap: 5px; /* Add a 5px gap between buttons */
 }
 
+/* Ensure the SVG icon in action buttons matches the text color */
 .actions-cell .action-btn svg {
-  fill: currentColor; /* Ensure the SVG icon matches the text color */
+  fill: currentColor; /* Inherit the current text color for the icon */
+}
+
+/* Define color for the "Never voted" status */
+.status-never-voted {
+  color: red; /* Red color for 'Never voted' status */
+}
+
+/* Define color for the "Not yet started" status */
+.status-not-started {
+  color: orange; /* Orange color for 'Not yet started' status */
+}
+
+/* Define color for the "Voting" status */
+.status-voting {
+  color: blue; /* Blue color for 'Voting' status */
+}
+
+/* Define color for the "Voted" status */
+.status-voted {
+  color: green; /* Green color for 'Voted' status */
+}
+
+/* Style for the status icon to align it with the text */
+.status-icon {
+  vertical-align: middle; /* Vertically align the icon with text */
+  margin-right: 5px; /* Add space between the icon and the text */
 }
